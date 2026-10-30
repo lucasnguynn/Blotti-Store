@@ -23,3 +23,15 @@
 @media(max-width:970px){.inv-portfolio-grid{grid-template-columns:repeat(2,1fr)}.inv-portfolio-grid figure img{height:380px}}
 @media(max-width:650px){.inv-portfolio-grid{gap:12px}.inv-portfolio-grid figure{padding:7px 7px 15px;border-radius:100px 100px 14px 14px}.inv-portfolio-grid figure img{height:245px;border-radius:90px 90px 10px 10px}.inv-portfolio-grid figcaption{padding:12px 4px 0}.inv-portfolio-grid figcaption strong{font-size:20px}.inv-portfolio-grid figcaption span{font-size:9px}}
 @media(max-width:385px){.inv-portfolio-grid figure img{height:205px}.inv-portfolio-grid figcaption strong{font-size:18px}}
+
+/* Editorial investor north-star statement */
+.inv-vision-band{padding:85px 0;background:#e7e2f0;position:relative;overflow:hidden}
+.inv-vision-band:before{content:"✳";position:absolute;top:-95px;right:3%;font-size:330px;color:#e0d3e8;pointer-events:none}
+.inv-vision-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:8%}
+.inv-vision-layout h2{font-size:clamp(3.6rem,5.8vw,6rem);margin:14px 0 22px}
+.inv-vision-layout p{font-size:16px;color:#6e5970;max-width:545px;line-height:1.7}
+.inv-vision-layout small{display:block;font-size:10px;line-height:1.6;color:#8d7b8d;max-width:500px}
+.inv-vision-visual{position:relative;margin:0 auto;width:100%;max-width:430px;height:510px;border-radius:220px 220px 21px 21px;border:11px solid #f9edf8;box-shadow:0 24px 60px #58446127;transform:rotate(3deg)}
+.inv-vision-visual img{border-radius:215px 215px 13px 13px;object-fit:cover}
+.inv-vision-visual span{position:absolute;right:-17px;bottom:38px;display:inline-block;background:#f8e7aa;transform:rotate(-10deg);border-radius:30px;padding:12px 19px;font-size:11px;font-weight:800;box-shadow:0 10px 25px #57445b21}
+@media(max-width:650px){.inv-vision-band{padding:60px 0}.inv-vision-layout{grid-template-columns:1fr;gap:38px}.inv-vision-layout h2{font-size:clamp(3.45rem,12vw,5rem)}.inv-vision-visual{max-width:350px;height:410px}.inv-vision-visual span{right:-6px;bottom:20px}}
