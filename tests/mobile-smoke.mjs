@@ -53,7 +53,7 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
                 return {
                   element:node.tagName.toLowerCase()+(node.id?'#'+node.id:'')+
                     (typeof node.className==='string'&&node.className?
-                      '.'+node.className.trim().split(/\\s+/).slice(0,2).join('.'):''),
+                      '.'+node.className.trim().split(/\s+/).slice(0,2).join('.'):''),
                   right:Math.round(rect.right),
                   width:Math.round(rect.width),
                   minWidth:style.minWidth,
