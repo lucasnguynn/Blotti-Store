@@ -1,7 +1,7 @@
 name: Blotti storefront and investor checks
 on:
   push:
-    branches: [main, "feat/**"]
+    branches: [main, "feat/**", "fix/**"]
   pull_request:
     branches: [main]
 jobs:
@@ -22,16 +22,16 @@ jobs:
           node <<'NODE'
           const fs = require('node:fs');
           const assert = require('node:assert/strict');
-          const files = ['index.html','investors.html','styles.css','investors.css','app.js','investors.js'];
+          const files = ['index.html','investors.html','policies.html','styles.css','investors.css','policies.css','app.js','investors.js'];
           const texts = Object.fromEntries(files.map(p=>[p,fs.readFileSync(p,'utf8')]));
-          const home=texts['index.html'], inv=texts['investors.html'];
-          for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','newsletterForm','siteSearch','proof','story','collections','shop','investorTeaser']) {
+          const home=texts['index.html'], inv=texts['investors.html'], care=texts['policies.html'];
+          for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','journal','siteSearch','proof','story','collections','shop','investorTeaser']) {
             assert(home.includes('id="'+id+'"'), 'Missing storefront element: '+id);
           }
           for(const id of ['thesis','market','strategy','portfolio','metrics','financials','roadmap','raise','disclosures','sources']) {
             assert(inv.includes('id="'+id+'"'), 'Missing investor section: '+id);
           }
-          for(const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','PLANNED','No test reports','Concept storefront']){
+          for(const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','STANDARDS JOURNEY','Collection preview']){
             assert(home.includes(keyword), 'Missing storefront disclosure: '+keyword);
           }
           for(const keyword of ['Not actual','not actual','Not available','Risk','risk','not a market share forecast','projections']) {
@@ -39,6 +39,18 @@ jobs:
             assert(plain.includes(keyword.toLowerCase()), 'Missing investor context: '+keyword);
           }
           assert(home.includes('href="investors.html"'),'Storefront investor navigation missing');
+          assert(home.includes('href="policies.html#shipping"'),'Shipping policy footer missing');
+          assert(home.includes('href="policies.html#returns"'),'Returns footer missing');
+          assert(!home.includes('📏')&&!home.includes('🧺')&&!home.includes('🌱'),'Placeholder emoji still used for journal cards');
+          assert((home.match(/class="guide-card-media"/g)||[]).length===3,'Journal needs three editorial image cards');
+          for(const id of ['shipping','returns','size','care','quality','contact']){
+            assert(care.includes('id="'+id+'"'),'Missing policy section '+id);
+          }
+          assert(care.includes('pre-launch') || care.includes('pre-launch'.toUpperCase()),'Policy status must be disclosed');
+          assert(care.includes('not a current Blotti certification'),'Certification status must remain accurate');
+          assert(!texts['app.js'].includes("el('#newsletterForm')"),'Obsolete newsletter listener could crash storefront');
+          assert(texts['styles.css'].includes('--site-header-offset'),'Sticky header anchor offset missing');
+          assert(home.includes('20261030-polish2'),'Stylesheet cache-busting version missing');
           assert(inv.includes('href="index.html"'),'Return link to storefront missing');
           assert(texts['app.js'].includes('renderProducts()'),'Catalog render missing');
           assert(texts['app.js'].includes('localStorage'),'Cart and favorites persistence missing');
