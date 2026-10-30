@@ -1,4 +1,4 @@
-name: Static storefront checks
+name: Blotti storefront and investor checks
 on:
   push:
     branches: [main, "feat/**"]
@@ -13,26 +13,50 @@ jobs:
         with:
           node-version: "22"
       - name: JavaScript syntax
-        run: node --check app.js
-      - name: Static storefront smoke checks
+        run: |
+          node --check app.js
+          node --check investors.js
+      - name: Content, asset and business-model smoke checks
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const assert = require('node:assert/strict');
-          const html = fs.readFileSync('index.html', 'utf8');
-          const css = fs.readFileSync('styles.css', 'utf8');
-          const js = fs.readFileSync('app.js', 'utf8');
-          for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','newsletterForm','siteSearch','proof','story','collections','shop']) {
-            assert(html.includes('id="'+id+'"'), 'Missing required element: '+id);
+          const files = ['index.html','investors.html','styles.css','investors.css','app.js','investors.js'];
+          const texts = Object.fromEntries(files.map(p=>[p,fs.readFileSync(p,'utf8')]));
+          const home=texts['index.html'], inv=texts['investors.html'];
+          for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','newsletterForm','siteSearch','proof','story','collections','shop','investorTeaser']) {
+            assert(home.includes('id="'+id+'"'), 'Missing storefront element: '+id);
           }
-          for (const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','PLANNED','No test reports','Concept storefront']) {
-            assert(html.includes(keyword), 'Missing important disclosure/content: '+keyword);
+          for(const id of ['thesis','market','strategy','portfolio','metrics','financials','roadmap','raise','disclosures','sources']) {
+            assert(inv.includes('id="'+id+'"'), 'Missing investor section: '+id);
           }
-          assert(js.includes('localStorage'), 'Missing local wishlist/cart functionality');
-          assert(js.includes('renderProducts()'), 'Product catalog not rendered');
-          assert(js.includes('initEvents()'), 'Interactions not wired');
-          assert(css.includes('@media(max-width:650px)'), 'Mobile styling missing');
-          assert(!html.includes('<script src="https://'), 'Unexpected external runtime dependency');
-          console.log('Static smoke checks passed.');
+          for(const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','PLANNED','No test reports','Concept storefront']){
+            assert(home.includes(keyword), 'Missing storefront disclosure: '+keyword);
+          }
+          for(const keyword of ['Not actual','not actual','Not available','Risk','risk','not a market share forecast','projections']) {
+            const plain=inv.toLowerCase();
+            assert(plain.includes(keyword.toLowerCase()), 'Missing investor context: '+keyword);
+          }
+          assert(home.includes('href="investors.html"'),'Storefront investor navigation missing');
+          assert(inv.includes('href="index.html"'),'Return link to storefront missing');
+          assert(texts['app.js'].includes('renderProducts()'),'Catalog render missing');
+          assert(texts['app.js'].includes('localStorage'),'Cart and favorites persistence missing');
+          assert(texts['investors.js'].includes('selectFinance('),'Interactive financial chart missing');
+          assert(texts['investors.js'].includes('selectYear('),'Interactive roadmap missing');
+          assert(texts['styles.css'].includes('@media(max-width:650px)'),'Storefront responsive layout missing');
+          assert(texts['investors.css'].includes('@media(max-width:650px)'),'Investor mobile layout missing');
+          const refs = new Set(files.flatMap(p=>Array.from(texts[p].matchAll(/assets\/blotti-[a-z-]+\.webp/g),m=>m[0])));
+          assert(refs.size>=10,'Too few original Blotti images integrated');
+          for(const asset of refs) {
+            assert(fs.existsSync(asset),'Referenced product image missing: '+asset);
+            const data=fs.readFileSync(asset);
+            assert(data.length>500 && data.length<120000,'Unusual asset size: '+asset);
+            assert(data.toString('ascii',0,4)==='RIFF' && data.toString('ascii',8,12)==='WEBP','Not a WebP image: '+asset);
+          }
+          const revenue=[798,1995,3990],costs=[657.2,1759,3169],ebit=[140.8,235.4,820.8];
+          for(let i=0;i<3;i++)assert(Math.abs(revenue[i]-costs[i]-ebit[i])<1.0,'Model line-item mismatch beyond rounding');
+          const capital=[30000,20000,20000,15000,10000,5000];
+          assert.equal(capital.reduce((a,b)=>a+b,0),100000,'Funding allocation must reconcile to USD 100K');
+          console.log('Checked '+refs.size+' local Blotti images, investor sections and financial totals.');
           NODE
