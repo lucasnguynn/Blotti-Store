@@ -97,3 +97,29 @@
  .inv-hero-seal .inv-seal-heart{width:29px;height:29px}
 }
 @media(prefers-reduced-motion:reduce){.inv-menu-glyph,.inv-menu-glyph:before,.inv-menu-glyph:after{transition:none}}
+
+/* Finely drawn journey connectors and investor CTA arrows */
+.inv-flywheel-steps .inv-flywheel-connector{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-style:normal;
+  font-size:0;
+  line-height:1;
+  color:#9c7c9d;
+  flex:0 0 auto;
+}
+.inv-flywheel-steps .inv-flywheel-connector .blotti-arrow-icon{
+  width:15px;height:15px;min-width:15px;margin:0;
+}
+.inv-market-tag .blotti-arrow-icon{width:13px;height:13px;min-width:13px;margin-left:5px}
+.inv-header-cta .blotti-arrow-icon,.inv-hero-buttons .pill .blotti-arrow-icon{
+  width:14px;height:14px;min-width:14px;
+}
+.inv-source-row .blotti-arrow-icon,.inv-sources-grid .blotti-arrow-icon{
+  width:12px;height:12px;min-width:12px;margin-inline-start:4px;
+}
+@media(max-width:650px){
+  .inv-flywheel-steps .inv-flywheel-connector .blotti-arrow-icon{width:12px;height:12px;min-width:12px}
+  .inv-hero-buttons .blotti-arrow-icon{width:14px;height:14px;min-width:14px}
+}

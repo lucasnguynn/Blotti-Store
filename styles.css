@@ -118,3 +118,35 @@ section[id],article[id],div[id][id="fitWidget"]{scroll-margin-top:var(--site-hea
   .announcement-sparkle{width:4px;height:4px;flex-basis:4px}
   .story-sticker .icon{width:22px;height:22px}
 }
+
+/* Editorial CTA icon system. SVG replaces U+2197 / U+2191 glyphs,
+   which iOS can substitute with large, full-color arrow emoji. */
+.blotti-arrow-icon{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  min-width:14px;
+  flex:0 0 auto;
+  overflow:visible;
+  vertical-align:-.12em;
+  margin-inline-start:.25em;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  pointer-events:none;
+}
+.blotti-arrow-icon--up{transform:rotate(-45deg)}
+.pill .blotti-arrow-icon{width:15px;height:15px;min-width:15px;margin-inline-start:0}
+.text-link .blotti-arrow-icon{width:13px;height:13px;min-width:13px;margin-inline-start:0}
+.circle-arrow .blotti-arrow-icon{width:16px;height:16px;min-width:16px;margin:0}
+.guide-open .blotti-arrow-icon,.link-reset .blotti-arrow-icon{width:12px;height:12px;min-width:12px}
+.quick-add .blotti-arrow-icon{width:14px;height:14px;min-width:14px;margin:0}
+.inv-photo-caption .blotti-arrow-icon{width:19px;height:19px;min-width:19px;margin:0}
+.hero-photo-note .blotti-arrow-icon{margin-inline-start:0}
+@media(max-width:650px){
+  .blotti-arrow-icon{width:13px;height:13px;min-width:13px}
+  .pill .blotti-arrow-icon{width:14px;height:14px;min-width:14px}
+  .circle-arrow .blotti-arrow-icon{width:15px;height:15px;min-width:15px}
+}

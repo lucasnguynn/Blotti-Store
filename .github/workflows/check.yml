@@ -57,7 +57,15 @@ jobs:
           assert(care.includes('not a current Blotti certification'),'Certification status must remain accurate');
           assert(!texts['app.js'].includes("el('#newsletterForm')"),'Obsolete newsletter listener could crash storefront');
           assert(texts['styles.css'].includes('--site-header-offset'),'Sticky header anchor offset missing');
-          assert(home.includes('20261031-ios2') && inv.includes('20261031-ios2') && care.includes('20261031-ios2'),'Page stylesheet versions must be refreshed');
+          assert(home.includes('20261031-arrows3') && inv.includes('20261031-arrows3') && care.includes('20261031-arrows3'),'Refined arrow icon assets must use fresh stylesheet/script URLs');
+          for(const file of ['index.html','investors.html','policies.html','app.js']){
+            assert(!/[\u2197\u2191]/u.test(texts[file]),'iOS emoji-like arrow characters remain in '+file);
+            assert(texts[file].includes('class="blotti-arrow-icon'), 'Missing Blotti line arrow SVG in '+file);
+          }
+          assert(texts['styles.css'].includes('.blotti-arrow-icon{'),'Shared outline arrow style is missing');
+          assert(inv.includes('class="inv-flywheel-connector"'),'Investor journey connectors must use stable SVG');
+          assert((home.match(/class="blotti-arrow-icon/g)||[]).length>=10,'Storefront arrows were not replaced');
+          assert((inv.match(/class="blotti-arrow-icon/g)||[]).length>=20,'Investor arrows were not replaced');
           assert(inv.includes('class="inv-menu-glyph"'),'Investor mobile CSS menu missing');
           assert(texts['investors.css'].includes('.inv-vision-band:before{content:""'),'iOS emoji pseudo-element not removed');
           for(const file of files){
