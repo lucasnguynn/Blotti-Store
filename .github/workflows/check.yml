@@ -55,7 +55,7 @@ jobs:
           assert(inv.includes('class="inv-menu-glyph"'),'Investor mobile CSS menu missing');
           assert(texts['investors.css'].includes('.inv-vision-band:before{content:""'),'iOS emoji pseudo-element not removed');
           for(const file of files){
-            const emoji = /[\\u2600-\\u27bf\\u{1f300}-\\u{1faff}]/gu;
+            const emoji = /[\u2600-\u27bf\u{1f300}-\u{1faff}]/gu;
             assert(!emoji.test(texts[file]),'Potential iOS colored-emoji glyph remains in '+file);
           }
           assert(home.includes('class="hero-star hstar1" aria-hidden="true"></span>'),'Store hero must use CSS decorative shape');
