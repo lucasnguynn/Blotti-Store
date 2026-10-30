@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,30,1;9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261030-polish2">
-  <script src="app.js?v=20261031-product-photos" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261031-ios2">
+  <script src="app.js?v=20261031-ios2" defer></script>
 </head>
 <body>
   <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -29,7 +29,7 @@
     <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></symbol>
   </svg>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="announcement"><span class="announcement-sparkle">✳</span> A little more comfort, a lot more confidence. <span class="announce-divider">✦</span> Thoughtful babywear · our first collection is taking shape <span class="announcement-sparkle">✳</span></div>
+  <div class="announcement"><span class="announcement-sparkle" aria-hidden="true"></span> A little more comfort, a lot more confidence. <span class="announce-divider" aria-hidden="true">·</span> Thoughtful babywear · our first collection is taking shape <span class="announcement-sparkle" aria-hidden="true"></span></div>
   <header class="site-header" id="top">
     <div class="header-inner container">
       <button class="icon-button mobile-menu-btn" id="menuToggle" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
@@ -49,27 +49,27 @@
     <section class="hero">
       <div class="hero-copy">
         <div class="hero-inner">
-          <p class="eyebrow"><span class="eyebrow-flower">✿</span> MADE FOR THE LITTLE THINGS</p>
+          <p class="eyebrow"><span class="eyebrow-flower" aria-hidden="true"></span> MADE FOR THE LITTLE THINGS</p>
           <h1>Big love for <em>little</em> <span class="hero-underline">moments.</span></h1>
           <p class="hero-lead">Soft days. Curious adventures. One perfectly comfortable little outfit at a time.</p>
           <p class="hero-support">Where thoughtful fabric meets effortless comfort.</p>
           <div class="hero-actions"><a class="pill dark" href="#shop">Discover the collection <svg class="icon"><use href="#i-arrow"/></svg></a><a class="text-link" href="#fit">Find their fit <span aria-hidden="true">↗</span></a></div>
-          <div class="hero-chips"><span>✦ Thoughtful fabrics</span><span>✦ Fit that grows smarter</span></div>
+          <div class="hero-chips"><span><i aria-hidden="true" class="hero-chip-dot"></i>Thoughtful fabrics</span><span><i aria-hidden="true" class="hero-chip-dot"></i>Fit that grows smarter</span></div>
         </div>
-        <span class="hero-star hstar1" aria-hidden="true">✳</span><span class="hero-star hstar2" aria-hidden="true">✦</span>
+        <span class="hero-star hstar1" aria-hidden="true"></span><span class="hero-star hstar2" aria-hidden="true"></span>
       </div>
       <div class="hero-visual">
         <img src="assets/blotti-hero.webp" alt="Blotti concept babywear assortment in pastel colors" fetchpriority="high">
         <div class="hero-image-tint"></div>
-        <div class="round-sticker" aria-hidden="true"><span>SMALL CLOTHES</span><b>♥</b><span>BIG FEELINGS</span></div>
+        <div class="round-sticker" aria-hidden="true"><span>SMALL CLOTHES</span><svg class="icon sticker-heart"><use href="#i-heart"/></svg><span>BIG FEELINGS</span></div>
         <div class="hero-photo-note">A softer kind of everyday <span>↗</span></div>
       </div>
       <div class="hero-wave" aria-hidden="true"><svg viewBox="0 0 1440 98" preserveAspectRatio="none"><path d="M0 48c150 35 300-40 470-15s260 69 450 29 335-39 520-8v44H0Z" fill="#fffdfb"/></svg></div>
     </section>
     <section class="promise-strip container reveal" aria-label="Our three promises">
-      <div><span class="promise-icon" style="background:#f6d5e1">✿</span><p><b>Signature Fabric</b><small>Considered from the first thread</small></p></div>
-      <div><span class="promise-icon" style="background:#dce5fd">✧</span><p><b>Learning Fit</b><small>Measurements, not guesswork</small></p></div>
-      <div><span class="promise-icon" style="background:#e0efcf">♡</span><p><b>Accessible Premium</b><small>Thoughtful details, everyday value</small></p></div>
+      <div><span class="promise-icon" style="background:#f6d5e1"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><p><b>Signature Fabric</b><small>Considered from the first thread</small></p></div>
+      <div><span class="promise-icon" style="background:#dce5fd"><svg class="icon" aria-hidden="true"><use href="#i-ruler"/></svg></span><p><b>Learning Fit</b><small>Measurements, not guesswork</small></p></div>
+      <div><span class="promise-icon" style="background:#e0efcf"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><p><b>Accessible Premium</b><small>Thoughtful details, everyday value</small></p></div>
     </section>
     <section class="section collections-section" id="collections">
       <div class="container"><div class="section-heading center reveal"><span class="eyebrow">LITTLE WARDROBES, LOTS OF LOVE</span><h2>A world of <em>tiny wonders.</em></h2><p>Mix, match, snuggle, repeat. Discover pieces for every precious phase.</p></div>
@@ -88,10 +88,10 @@
         <div class="shop-end"><span id="productCount"></span><button class="link-reset" id="resetFilters" type="button">See all products <span>↗</span></button></div>
       </div>
     </section>
-    <section class="marquee-band" aria-label="Blotti promise"><div class="marquee-track" aria-hidden="true"><span>SOFT ON SKIN</span>✳<span>BIG ON LOVE</span>✳<span>MADE FOR GROWING</span>✳<span>SOFT ON SKIN</span>✳<span>BIG ON LOVE</span>✳<span>MADE FOR GROWING</span>✳</div></section>
+    <section class="marquee-band" aria-label="Blotti promise"><div class="marquee-track" aria-hidden="true"><span>SOFT ON SKIN</span> · <span>BIG ON LOVE</span> · <span>MADE FOR GROWING</span> · <span>SOFT ON SKIN</span> · <span>BIG ON LOVE</span> · <span>MADE FOR GROWING</span> · </div></section>
     <section class="section fabric-section" id="fabric">
       <div class="container fabric-layout">
-        <div class="fabric-visual reveal"><img src="assets/blotti-fabric-cotton.webp" loading="lazy" alt="Cotton-spandex textile sample provided in the Blotti concept asset set"><span class="fabric-flower" aria-hidden="true">✿</span><div class="fabric-tag">Good fabric.<br><em>Great little days.</em></div></div>
+        <div class="fabric-visual reveal"><img src="assets/blotti-fabric-cotton.webp" loading="lazy" alt="Cotton-spandex textile sample provided in the Blotti concept asset set"><span class="fabric-flower" aria-hidden="true"></span><div class="fabric-tag">Good fabric.<br><em>Great little days.</em></div></div>
         <div class="fabric-content reveal"><span class="eyebrow">01 / THE FABRIC STORY</span><h2>Feel the <em>difference.</em><br>Know the <em>reason.</em></h2><p class="large-copy">We believe “soft” should be more than a sweet-sounding word.</p><p>Blotti's proposed Signature Fabric approach begins with clear fabric specifications, sample testing, and quality checks. The goal is to make comfort and durability understandable, not simply advertised.</p>
         <div class="fabric-features"><div><span>01</span><p><b>Specified with intention</b><small>Define fabric and construction requirements before production.</small></p></div><div><span>02</span><p><b>Test, learn, improve</b><small>Plan checks for wash performance, durability, and relevant textile safety requirements.</small></p></div><div><span>03</span><p><b>Show the evidence</b><small>Publish actual results and scope as they become available.</small></p></div></div>
         <a href="#proof" class="pill outline">Explore our Proof Lab <svg class="icon"><use href="#i-arrow"/></svg></a></div>
@@ -104,9 +104,9 @@
           <div class="fit-widget-top"><div class="fit-logo">Blotti <span>fit club</span></div><span class="step-pill" id="fitStepLabel">STEP 1 OF 2</span></div>
           <h3 id="fitWidgetTitle">Let's find their happy fit!</h3><p id="fitWidgetSub">A few little details help us suggest a starting size.</p>
           <form id="fitForm">
-            <div class="fit-step" id="fitStepOne"><label>Baby's age <span>(months)</span><input id="babyAge" type="number" min="0" max="36" placeholder="e.g. 6" required></label><label>Height <span>(cm)</span><input id="babyHeight" type="number" min="40" max="110" placeholder="e.g. 68" required></label><label>Weight <span>(kg, optional)</span><input id="babyWeight" type="number" min="1" max="25" step=".1" placeholder="e.g. 7.5"></label><fieldset class="fit-preference"><legend>How do you like their fit?</legend><label><input type="radio" name="fitPreference" value="regular" checked><span>Just right ✨</span></label><label><input type="radio" name="fitPreference" value="roomy"><span>Room to grow 🌱</span></label></fieldset><button class="pill dark fit-submit" type="submit">Find my baby's size <svg class="icon"><use href="#i-arrow"/></svg></button></div>
+            <div class="fit-step" id="fitStepOne"><label>Baby's age <span>(months)</span><input id="babyAge" type="number" min="0" max="36" placeholder="e.g. 6" required></label><label>Height <span>(cm)</span><input id="babyHeight" type="number" min="40" max="110" placeholder="e.g. 68" required></label><label>Weight <span>(kg, optional)</span><input id="babyWeight" type="number" min="1" max="25" step=".1" placeholder="e.g. 7.5"></label><fieldset class="fit-preference"><legend>How do you like their fit?</legend><label><input type="radio" name="fitPreference" value="regular" checked><span>Just right</span></label><label><input type="radio" name="fitPreference" value="roomy"><span>Room to grow</span></label></fieldset><button class="pill dark fit-submit" type="submit">Find my baby's size <svg class="icon"><use href="#i-arrow"/></svg></button></div>
             <div class="fit-step" id="fitResult" hidden><div class="fit-result-badge">OUR SIZE SUGGESTION</div><div class="size-result" id="sizeResult">70</div><p id="sizeExplanation"></p><div class="fit-result-actions"><button class="pill dark" type="button" id="shopMySize">Explore pieces <svg class="icon"><use href="#i-arrow"/></svg></button><button class="pill subtle" type="button" id="fitRestart">Try again</button></div><label class="save-consent"><input id="saveFit" type="checkbox"> Save this measurement on my device for next time</label><button type="button" id="saveFitButton" class="save-fit-link">Save this profile</button><span id="fitSaved" role="status"></span></div>
-          </form><div class="fit-widget-footer"><span>✿ Your little one is one of a kind.</span><span>Your information stays on this device</span></div>
+          </form><div class="fit-widget-footer"><span>Your little one is one of a kind.</span><span>Your information stays on this device</span></div>
         </div>
       </div>
     </section>
@@ -143,7 +143,7 @@
     </section>
     <section class="section story-section" id="story">
       <div class="container story-layout"><div class="story-copy reveal"><span class="eyebrow">MORE THAN JUST BABY CLOTHES</span><h2>Made with care.<br><em>Growing with you.</em></h2><p class="story-intro">Blotti began with a simple question: <b>how can parents feel more confident that baby clothes really perform and really fit?</b></p><p>Our answer is a thoughtful mix of measured fabric quality, a learning-based fit journey, and an accessible-premium approach. Because the tiny everyday things deserve big attention.</p><div class="mission-vision"><div><span>OUR MISSION</span><h3>Make comfort more certain.</h3><p>Help families choose babywear with clearer product evidence, more useful sizing guidance, and thoughtful value.</p></div><div><span>OUR VISION</span><h3>Grow a kinder way to dress little ones.</h3><p>Build a trusted babywear brand that continuously improves through fabric knowledge, parent feedback, and baby's growth.</p></div></div><small class="editorial-note">Mission and vision are editorial wording developed from the supplied business strategy for this concept website.</small></div>
-        <div class="story-photos reveal"><div class="story-photo photo-a"><img loading="lazy" src="assets/blotti-lookbook.webp" alt="Blotti pastel babywear collection concept hanging on a rack"></div><div class="story-photo photo-b"><img loading="lazy" src="assets/blotti-collection.webp" alt="Blotti collection concept imagery"></div><span class="story-sticker">every little<br>day matters <span>♥</span></span></div></div>
+        <div class="story-photos reveal"><div class="story-photo photo-a"><img loading="lazy" src="assets/blotti-lookbook.webp" alt="Blotti pastel babywear collection concept hanging on a rack"></div><div class="story-photo photo-b"><img loading="lazy" src="assets/blotti-collection.webp" alt="Blotti collection concept imagery"></div><span class="story-sticker">every little<br>day matters <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span></div></div>
     </section>
     <section class="inv-teaser-section" id="investorTeaser" aria-labelledby="investorTeaserTitle">
       <div class="container inv-teaser-layout">
