@@ -1,9 +1,15 @@
 name: Blotti storefront and investor checks
 on:
   push:
-    branches: [main, "feat/**", "fix/**"]
+    branches: [main]
   pull_request:
     branches: [main]
+
+# One CI run per PR update, then one verification after merging to main.
+# Avoid creating duplicate runs on both branch push and PR synchronization.
+concurrency:
+  group: blotti-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   verify:
     runs-on: ubuntu-latest
