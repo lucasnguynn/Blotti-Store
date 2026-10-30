@@ -1,0 +1,38 @@
+name: Static storefront checks
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: JavaScript syntax
+        run: node --check app.js
+      - name: Static storefront smoke checks
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const css = fs.readFileSync('styles.css', 'utf8');
+          const js = fs.readFileSync('app.js', 'utf8');
+          for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','newsletterForm','siteSearch','proof','story','collections','shop']) {
+            assert(html.includes('id="'+id+'"'), 'Missing required element: '+id);
+          }
+          for (const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','PLANNED','No test reports','Concept storefront']) {
+            assert(html.includes(keyword), 'Missing important disclosure/content: '+keyword);
+          }
+          assert(js.includes('localStorage'), 'Missing local wishlist/cart functionality');
+          assert(js.includes('renderProducts()'), 'Product catalog not rendered');
+          assert(js.includes('initEvents()'), 'Interactions not wired');
+          assert(css.includes('@media(max-width:650px)'), 'Mobile styling missing');
+          assert(!html.includes('<script src="https://'), 'Unexpected external runtime dependency');
+          console.log('Static smoke checks passed.');
+          NODE
