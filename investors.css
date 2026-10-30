@@ -26,7 +26,7 @@
 
 /* Editorial investor north-star statement */
 .inv-vision-band{padding:85px 0;background:#e7e2f0;position:relative;overflow:hidden}
-.inv-vision-band:before{content:"✳";position:absolute;top:-95px;right:3%;font-size:330px;color:#e0d3e8;pointer-events:none}
+.inv-vision-band:before{content:"";position:absolute;top:-150px;right:-125px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle at 40% 45%,#e7d6ee 0 30%,#d8c5e4 31% 41%,transparent 43%);opacity:.58;pointer-events:none}
 .inv-vision-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:8%}
 .inv-vision-layout h2{font-size:clamp(3.6rem,5.8vw,6rem);margin:14px 0 22px}
 .inv-vision-layout p{font-size:16px;color:#6e5970;max-width:545px;line-height:1.7}
@@ -35,3 +35,65 @@
 .inv-vision-visual img{border-radius:215px 215px 13px 13px;object-fit:cover}
 .inv-vision-visual span{position:absolute;right:-17px;bottom:38px;display:inline-block;background:#f8e7aa;transform:rotate(-10deg);border-radius:30px;padding:12px 19px;font-size:11px;font-weight:800;box-shadow:0 10px 25px #57445b21}
 @media(max-width:650px){.inv-vision-band{padding:60px 0}.inv-vision-layout{grid-template-columns:1fr;gap:38px}.inv-vision-layout h2{font-size:clamp(3.45rem,12vw,5rem)}.inv-vision-visual{max-width:350px;height:410px}.inv-vision-visual span{right:-6px;bottom:20px}}
+
+/* Mobile reliability: iOS renders several Unicode dingbats as colored emoji.
+   All decorative marks here are CSS shapes or SVG, not OS-dependent font glyphs. */
+.investor-page{overflow-x:clip}
+.inv-hero-seal .inv-seal-heart{display:block;width:43px;height:43px;fill:none;stroke:#d69db2;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.inv-announcement-dot{width:5px;height:5px;background:#fbe7c2;flex:0 0 5px;border-radius:50%}
+.inv-thesis-icon{font:500 26px/1 var(--heading)}
+.inv-small-ornament{display:inline-block;flex:0 0 27px;width:27px;height:27px;background:#b995ba;clip-path:polygon(50% 0%,60% 37%,85% 15%,64% 42%,100% 50%,64% 58%,85% 85%,60% 63%,50% 100%,40% 63%,15% 85%,36% 58%,0% 50%,36% 42%,15% 15%,40% 37%)}
+.inv-thesis-bottom>.inv-small-ornament{width:29px;height:29px;flex-basis:29px;background:#b18eae}
+.inv-portfolio-note>.inv-small-ornament{width:25px;height:25px;flex-basis:25px;background:#b589ad}
+.inv-finance-insight>.inv-small-ornament{width:24px;height:24px;flex-basis:24px;background:#a384b2}
+.inv-donut-decor{width:62px;height:62px;border-radius:50%;border:10px solid rgba(229,176,212,.8);box-shadow:inset 0 0 0 7px #fff9,0 8px 25px #6b3c5b15;font-size:0}
+.inv-cta-paper b{font:600 27px/1 var(--script);color:#b680aa}
+.inv-vision-layout h2{overflow-wrap:normal}
+.inv-menu-btn{font-size:0;position:relative;color:#523b50}
+.inv-menu-glyph{display:block;width:20px;height:2px;border-radius:2px;background:currentColor;position:relative;transition:background .2s}
+.inv-menu-glyph:before,.inv-menu-glyph:after{content:"";position:absolute;width:20px;height:2px;background:currentColor;border-radius:2px;left:0;transition:transform .25s,top .25s}
+.inv-menu-glyph:before{top:-6px}
+.inv-menu-glyph:after{top:6px}
+.inv-menu-btn[aria-expanded="true"] .inv-menu-glyph{background:transparent}
+.inv-menu-btn[aria-expanded="true"] .inv-menu-glyph:before{top:0;transform:rotate(45deg)}
+.inv-menu-btn[aria-expanded="true"] .inv-menu-glyph:after{top:0;transform:rotate(-45deg)}
+.inv-market-layout>*,.inv-round-panel>*,.inv-vision-layout>*,.inv-split>*,.inv-cta-layout>*,.inv-finance-controls>*,.inv-footer-content>*,.inv-market-side article>div{min-width:0}
+.inv-market-primary>strong{max-width:100%;white-space:nowrap}
+.inv-roadmap-detail,.inv-metric-card,.inv-pillar,.inv-market-primary{overflow-wrap:break-word}
+.investor-page input,.investor-page button,.investor-page select{touch-action:manipulation}
+@media(max-width:650px){
+  .inv-vision-band{padding:58px 0 64px}
+  .inv-vision-band:before{display:none}
+  .inv-vision-layout{gap:29px}
+  .inv-vision-layout h2{font-size:clamp(2.75rem,10.5vw,3.6rem);line-height:1.08;letter-spacing:-.052em;margin:12px 0 20px}
+  .inv-vision-layout p{font-size:14px;line-height:1.65;margin:0 0 19px}
+  .inv-vision-layout small{font-size:10px;line-height:1.6}
+  .inv-vision-visual{height:auto;aspect-ratio:4/5;max-width:350px;margin:0 auto;transform:rotate(1deg);border-width:7px;border-radius:145px 145px 16px 16px}
+  .inv-vision-visual img{border-radius:137px 137px 10px 10px}
+  .inv-vision-visual span{right:0;bottom:12px;padding:9px 12px;font-size:10px;max-width:85%}
+  .inv-announcement-dot{width:4px;height:4px;flex-basis:4px}
+  .inv-header-inner{gap:8px}
+  .inv-menu-btn{width:42px;height:42px;flex:0 0 42px}
+  .inv-hero h1{font-size:clamp(3.2rem,11.5vw,4.65rem)}
+  .inv-hero-copy{padding:55px 22px 51px}
+  .inv-hero-lead{font-size:14px;line-height:1.65}
+  .inv-market-primary>strong{font-size:clamp(3.1rem,13.8vw,4.8rem);letter-spacing:-.065em}
+  .inv-market-primary>strong span{font-size:.27em;margin-left:6px}
+  .inv-thesis-card{padding:24px 22px}
+  .inv-thesis-icon{margin-bottom:15px;font-size:25px}
+  .inv-thesis-card h3{font-size:25px}
+  .inv-donut-decor{width:40px;height:40px;border-width:6px;top:4px;right:3%}
+  .inv-round-panel{padding:28px 18px}
+  .inv-finance-controls h3{line-height:1.25}
+  .inv-metrics-gates{gap:14px}
+  .inv-roadmap-track button:focus-visible,.inv-finance-switch button:focus-visible{outline-offset:1px}
+  .inv-footer-content{gap:22px}
+}
+@media(max-width:390px){
+ .inv-hero h1{font-size:clamp(2.9rem,11vw,3.6rem)}
+ .inv-vision-layout h2{font-size:clamp(2.65rem,10.4vw,3.3rem)}
+ .inv-market-primary>strong{font-size:clamp(2.8rem,13vw,3.6rem)}
+ .inv-market-side article{flex-wrap:wrap}
+ .inv-hero-seal .inv-seal-heart{width:29px;height:29px}
+}
+@media(prefers-reduced-motion:reduce){.inv-menu-glyph,.inv-menu-glyph:before,.inv-menu-glyph:after{transition:none}}

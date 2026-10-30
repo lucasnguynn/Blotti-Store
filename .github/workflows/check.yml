@@ -51,7 +51,14 @@ jobs:
           assert(care.includes('not a current Blotti certification'),'Certification status must remain accurate');
           assert(!texts['app.js'].includes("el('#newsletterForm')"),'Obsolete newsletter listener could crash storefront');
           assert(texts['styles.css'].includes('--site-header-offset'),'Sticky header anchor offset missing');
-          assert(home.includes('20261030-polish2'),'Stylesheet cache-busting version missing');
+          assert(home.includes('20261031-ios2') && inv.includes('20261031-ios2') && care.includes('20261031-ios2'),'Page stylesheet versions must be refreshed');
+          assert(inv.includes('class="inv-menu-glyph"'),'Investor mobile CSS menu missing');
+          assert(texts['investors.css'].includes('.inv-vision-band:before{content:""'),'iOS emoji pseudo-element not removed');
+          for(const file of files){
+            const emoji = /[\u2600-\u27bf\u{1f300}-\u{1faff}]/gu;
+            assert(!emoji.test(texts[file]),'Potential iOS colored-emoji glyph remains in '+file);
+          }
+          assert(home.includes('class="hero-star hstar1" aria-hidden="true"></span>'),'Store hero must use CSS decorative shape');
           assert(inv.includes('href="index.html"'),'Return link to storefront missing');
           assert(texts['app.js'].includes('renderProducts()'),'Catalog render missing');
           assert(texts['app.js'].includes('localStorage'),'Cart and favorites persistence missing');
@@ -73,3 +80,30 @@ jobs:
           assert.equal(capital.reduce((a,b)=>a+b,0),100000,'Funding allocation must reconcile to USD 100K');
           console.log('Checked '+refs.size+' local Blotti images, investor sections and financial totals.');
           NODE
+
+  mobile-webkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps webkit chromium
+      - name: Run local preview server and mobile browser checks
+        shell: bash
+        run: |
+          mkdir -p mobile-captures
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/blotti-preview.log 2>&1 &
+          sleep 2
+          node tests/mobile-smoke.mjs
+      - name: Save iOS-style preview screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-layout-preview
+          path: mobile-captures/
+          if-no-files-found: ignore
