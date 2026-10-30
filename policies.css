@@ -8,3 +8,35 @@
 .care-footer{padding:48px 0 20px;background:#5b455b;color:#f8ebf5}.care-footer-inner{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;gap:25px}.care-footer .wordmark{color:#f8e4ed}.care-footer p{font:italic 18px var(--heading);margin:0}.care-footer-inner>div{display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-size:12px}.care-footer-bottom{font-size:10px;border-top:1px solid #ffffff36;color:#e3cfde;margin-top:35px;padding-top:20px}
 @media(max-width:950px){.care-header nav{gap:9px}.care-header nav a{font-size:10px}.care-back{display:none}.care-layout{grid-template-columns:.83fr 1.17fr;gap:28px}.care-time-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.care-header{min-height:69px}.care-header nav{flex-wrap:wrap;gap:8px;justify-content:flex-end;max-width:230px}.care-header nav a{font-size:9px}.care-hero-layout,.care-layout,.care-contact,.care-footer-inner{grid-template-columns:1fr}.care-hero-layout{gap:25px}.care-hero-copy{padding:58px 0 8px}.care-hero-copy h1{font-size:clamp(3.25rem,12vw,5rem)}.care-hero-image{height:315px;max-width:400px;width:100%;margin:auto}.care-launch-note{display:block;padding:18px;margin-top:18px}.care-launch-note>span{display:inline-block;margin-top:13px}.care-section{padding:62px 0}.care-section-title{position:static}.care-section-title h2{font-size:3.25rem}.care-section-title img{height:190px;margin-top:15px}.care-section-body h3{font-size:27px}.care-time-grid{grid-template-columns:1fr 1fr}.care-contact{gap:24px}.care-contact img{height:310px}.care-footer-inner>div{align-items:flex-start}.care-footer p{margin:8px 0}}@media(max-width:385px){.care-time-grid{grid-template-columns:1fr}.care-header nav a{font-size:8px}.care-hero-copy h1{font-size:3rem}}
+
+/* Responsive stability: keep long table content inside its own horizontal
+   scroll area, never allow a grid item's min-content size to widen the page.
+   In particular the 490px size chart previously expanded iPhone viewports
+   to 504px, making mobile WebKit and Chromium tests fail. */
+.care-page{max-width:100%;overflow-x:clip}
+.care-page main,.care-page section,.care-page footer{min-width:0;max-width:100%}
+.care-hero-layout,.care-layout,.care-contact,.care-footer-inner{min-width:0}
+.care-hero-layout>*,.care-layout>*,.care-contact>*,.care-footer-inner>*{min-width:0;max-width:100%}
+.care-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.care-table-wrap table{min-width:490px;width:100%}
+.care-header{min-width:0}
+.care-header nav{min-width:0}
+.care-section-body,.care-section-title{min-width:0}
+.care-section-body p,.care-section-title p{overflow-wrap:break-word}
+@media(max-width:950px){
+  .care-layout{grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr)}
+  .care-header{gap:12px}
+}
+@media(max-width:650px){
+  .care-hero-layout,.care-layout,.care-contact,.care-footer-inner{grid-template-columns:minmax(0,1fr)}
+  .care-header{gap:10px;justify-content:space-between}
+  .care-header .wordmark{flex:0 0 auto}
+  .care-header nav{flex:1 1 auto;width:auto;max-width:230px;justify-content:flex-end;align-content:center}
+  .care-table-wrap{max-width:100%}
+  .care-time-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .care-time-grid>*{min-width:0}
+}
+@media(max-width:385px){
+  .care-header nav{gap:6px}
+  .care-time-grid{grid-template-columns:minmax(0,1fr)}
+}

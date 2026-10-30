@@ -29,7 +29,8 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
           const marker=document.querySelector('.inv-vision-band');
           const bounding=heading?.getBoundingClientRect();
           return {
-            viewport:window.innerWidth,
+            layoutViewport:window.innerWidth,
+            visualViewport:window.visualViewport?.width,
             document:document.documentElement.scrollWidth,
             body:document.body.scrollWidth,
             starContent:marker?getComputedStyle(marker,'::before').content:null,
@@ -40,8 +41,32 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
           };
         });
         const prefix=engineName+'/'+viewport.width+'/'+item.name;
-        if (geometry.document>geometry.viewport+3){
-          console.error(prefix+' OVERFLOW '+JSON.stringify(geometry));
+        // Compare with the configured physical CSS viewport, NOT window.innerWidth.
+        // On mobile Chromium a min-content overflow can silently enlarge innerWidth
+        // (e.g. a 375px device becomes a 504px layout viewport), hiding the bug.
+        if (Math.max(geometry.document, geometry.body, geometry.layoutViewport)>viewport.width+3){
+          const offenders=await page.evaluate((expectedWidth)=>{
+            return Array.from(document.querySelectorAll('body *'))
+              .map(node=>{
+                const rect=node.getBoundingClientRect();
+                const style=getComputedStyle(node);
+                return {
+                  element:node.tagName.toLowerCase()+(node.id?'#'+node.id:'')+
+                    (typeof node.className==='string'&&node.className?
+                      '.'+node.className.trim().split(/\s+/).slice(0,2).join('.'):''),
+                  right:Math.round(rect.right),
+                  width:Math.round(rect.width),
+                  minWidth:style.minWidth,
+                  overflowX:style.overflowX
+                };
+              })
+              .filter(x=>x.width>expectedWidth+2||x.right>expectedWidth+5)
+              .sort((a,b)=>b.width-a.width).slice(0,12);
+          },viewport.width);
+          console.error(prefix+' OVERFLOW '+JSON.stringify({expected:viewport.width,...geometry,offenders}));
+          if(item.name==='customer-care'){
+            await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-care-failure.png',fullPage:true});
+          }
           failed=true;
         }
         if (errors.length){
@@ -81,7 +106,7 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
             await toggle.click();
           }
         }
-        console.log(prefix+': '+geometry.document+'px content / '+geometry.viewport+'px viewport');
+        console.log(prefix+': '+geometry.document+'px content / '+viewport.width+'px expected viewport');
       }
       await context.close();
     }
