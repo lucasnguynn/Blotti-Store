@@ -41,7 +41,8 @@ jobs:
           assert(home.includes('href="investors.html"'),'Storefront investor navigation missing');
           assert(home.includes('href="policies.html#shipping"'),'Shipping policy footer missing');
           assert(home.includes('href="policies.html#returns"'),'Returns footer missing');
-          assert(!home.includes('📏')&&!home.includes('🧺')&&!home.includes('🌱'),'Placeholder emoji still used for journal cards');
+          const journal=home.split('id="journal"')[1].split('id="faq"')[0];
+          assert(!journal.includes('📏')&&!journal.includes('🧺')&&!journal.includes('🌱'),'Placeholder emoji still used in journal cards');
           assert((home.match(/class="guide-card-media"/g)||[]).length===3,'Journal needs three editorial image cards');
           for(const id of ['shipping','returns','size','care','quality','contact']){
             assert(care.includes('id="'+id+'"'),'Missing policy section '+id);
