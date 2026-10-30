@@ -72,7 +72,7 @@ The storefront and investor gallery use **19 optimized WebP assets** from the us
 - Product design variants are illustrative. The garment spec, certification, actual availability, real-material compositions and official SKU assortment remain unvalidated.
 - Additional untouched originals remain in the uploaded ZIP, outside this Git repository.
 - SVG garment illustrations remain available as a code-generated fallback.
-- Only Google Fonts are loaded externally for branding, and can be replaced with locally licensed fonts for offline presentations.
+- Google Fonts are loaded externally for branding. The editorial sections also use remote Unsplash photography; both can be packaged locally with suitable permissions for offline presentations.
 
 ## Investor briefing
 
@@ -102,6 +102,30 @@ The investor hub includes:
 
 **Legal boundary:** The briefing is an academic business concept, not a securities offering, independently audited model or promise of a return. No claim of Blotti product certification, realized sales or completed fundraising is made.
 
+## October 2026 storefront polish and customer care
+
+- Resolved the investor teaser's unexpectedly stacked desktop layout with a defined two-column composition, tighter section spacing, a prominent babywear editorial photo and individually styled topic chips.
+- Replaced the three journal emoji blocks with image-led editorial cards. Babywear/wardrobe images are licensed editorial photography and **do not depict Blotti's actual manufactured inventory**.
+- Reworked the on-page proof section as a structured, image-led **quality journey**: material specification, care testing plan, construction review and clearer product information. Relevant standards are linked without suggesting Blotti already holds lab certificates.
+- Added `policies.html` and `policies.css` with a polished customer care guide covering **delivery, returns/exchanges, size guidance, garment care, quality references and contact readiness**. Every operational commitment is explicitly labelled proposed/pre-launch until Blotti has approved real order fulfillment and customer support processes.
+- Removed the fake newsletter subscription and invalid contact form behavior. The editorial call-to-action instead directs customers to real, available content.
+- Fixed sticky-header section offsets and added stylesheet/script query versions to reduce outdated cached CSS when the site is re-deployed.
+- Changed the footer to expose shipping, returns, size, care and quality information.
+
+### Editorial images
+
+The new journal, quality card, and investor teaser combine provided Blotti assets with three free editorial images from Unsplash, used under the [Unsplash License](https://unsplash.com/license):
+
+- [Baby clothes and shoes neatly organized, jackson kondili](https://unsplash.com/photos/baby-clothes-and-shoes-neatly-organized-on-shelves-wFHaSqNxHm4)
+- [Baby clothes hanging on a rack, jackson kondili](https://unsplash.com/photos/baby-clothes-hanging-on-a-rack-5juo633uIEc)
+- [Baby clothes in a woven basket, CARMELA LUSTRE](https://unsplash.com/photos/baby-clothes-in-a-woven-basket-AkPas1rErdE)
+
+These are presentation photographs; they are **not evidence of Blotti inventory or production**. They are loaded remotely from Unsplash, while concept product images from the team's ZIP are hosted locally in `assets/`. For a live commerce release, replace all editorial imagery with brand-approved photography and check rights and model releases where applicable.
+
+### Custom domain security
+
+The repository currently uses `CNAME` for `blotti.duckdns.org`. If the browser shows “Not Secure”, the DNS/HTTPS settings need attention. Verify the subdomain CNAME record points to `lucasnguynn.github.io`, then in GitHub **Settings → Pages**, select **Enforce HTTPS** after GitHub has provisioned a certificate. See [GitHub's HTTPS guide](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https). This is a DNS and Pages configuration step, not something static CSS/HTML changes can fix. Avoid asking users to enter sensitive data on the current preview site.
+
 ## What must be built before actual launch
 
 - Approved SKUs, bill of materials, stock, prices, accurate product images, sizing grades and technical fabric specs.
@@ -120,6 +144,8 @@ styles.css                      Storefront design system and image layouts
 investors.html                  Investor relations / funding narrative
 investors.js                    Interactive financial chart, roadmap and actions
 investors.css                   Investor design, layout and responsive behavior
+policies.html                   Customer care / proposed operating policies
+policies.css                    Customer care responsive design
 assets/blotti-*.webp            Optimized Blotti concept images from supplied ZIP
 .github/workflows/check.yml     JS, model and asset CI validation
 README.md                       Source notes, operations and claims guardrails
