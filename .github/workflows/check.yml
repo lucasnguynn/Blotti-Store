@@ -51,7 +51,14 @@ jobs:
           assert(care.includes('not a current Blotti certification'),'Certification status must remain accurate');
           assert(!texts['app.js'].includes("el('#newsletterForm')"),'Obsolete newsletter listener could crash storefront');
           assert(texts['styles.css'].includes('--site-header-offset'),'Sticky header anchor offset missing');
-          assert(home.includes('20261030-polish2'),'Stylesheet cache-busting version missing');
+          assert(home.includes('20261031-ios2') && inv.includes('20261031-ios2') && care.includes('20261031-ios2'),'Page stylesheet versions must be refreshed');
+          assert(inv.includes('class="inv-menu-glyph"'),'Investor mobile CSS menu missing');
+          assert(texts['investors.css'].includes('.inv-vision-band:before{content:""'),'iOS emoji pseudo-element not removed');
+          for(const file of files){
+            const emoji = /[\\u2600-\\u27bf\\u{1f300}-\\u{1faff}]/gu;
+            assert(!emoji.test(texts[file]),'Potential iOS colored-emoji glyph remains in '+file);
+          }
+          assert(home.includes('class="hero-star hstar1" aria-hidden="true"></span>'),'Store hero must use CSS decorative shape');
           assert(inv.includes('href="index.html"'),'Return link to storefront missing');
           assert(texts['app.js'].includes('renderProducts()'),'Catalog render missing');
           assert(texts['app.js'].includes('localStorage'),'Cart and favorites persistence missing');
