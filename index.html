@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,30,1;9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261030-polish2">
+  <script src="app.js?v=20261030-polish2" defer></script>
 </head>
 <body>
   <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -29,7 +29,7 @@
     <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></symbol>
   </svg>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="announcement"><span class="announcement-sparkle">✳</span> A little more comfort, a lot more confidence. <span class="announce-divider">✦</span> Concept storefront · no real orders <span class="announcement-sparkle">✳</span></div>
+  <div class="announcement"><span class="announcement-sparkle">✳</span> A little more comfort, a lot more confidence. <span class="announce-divider">✦</span> Thoughtful babywear · our first collection is taking shape <span class="announcement-sparkle">✳</span></div>
   <header class="site-header" id="top">
     <div class="header-inner container">
       <button class="icon-button mobile-menu-btn" id="menuToggle" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
@@ -82,7 +82,7 @@
     </section>
     <section class="section shop-section" id="shop">
       <div class="container">
-        <div class="shop-heading reveal"><div><span class="eyebrow">THE BLOTTI EDIT</span><h2>Little things, <em>big favorites.</em></h2><p>Explore our proposed first collection, designed around better fabric, better fit, and happy little days.</p></div><div class="catalog-note">✳ Concept products & illustrative pricing</div></div>
+        <div class="shop-heading reveal"><div><span class="eyebrow">THE BLOTTI EDIT</span><h2>Little things, <em>big favorites.</em></h2><p>Discover our first collection edit: considered babywear, softer color stories, and little details that matter.</p></div><div class="catalog-note">The first Blotti edit · Collection preview</div></div>
         <div class="catalog-toolbar"><div class="filter-tabs" role="group" aria-label="Filter products"><button type="button" class="filter-tab active" data-category="All">Shop all</button><button type="button" class="filter-tab" data-category="Bodysuits">Bodysuits</button><button type="button" class="filter-tab" data-category="Sets">Matching sets</button><button type="button" class="filter-tab" data-category="Sleepwear">Sleepwear</button><button type="button" class="filter-tab" data-category="Gifting">Gifting</button></div><label class="sort-wrap">Sort by <select id="sortSelect"><option value="featured">Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name: A–Z</option></select></label></div>
         <div class="product-grid" id="productGrid" aria-live="polite"></div>
         <div class="shop-end"><span id="productCount"></span><button class="link-reset" id="resetFilters" type="button">See all products <span>↗</span></button></div>
@@ -106,19 +106,39 @@
           <form id="fitForm">
             <div class="fit-step" id="fitStepOne"><label>Baby's age <span>(months)</span><input id="babyAge" type="number" min="0" max="36" placeholder="e.g. 6" required></label><label>Height <span>(cm)</span><input id="babyHeight" type="number" min="40" max="110" placeholder="e.g. 68" required></label><label>Weight <span>(kg, optional)</span><input id="babyWeight" type="number" min="1" max="25" step=".1" placeholder="e.g. 7.5"></label><fieldset class="fit-preference"><legend>How do you like their fit?</legend><label><input type="radio" name="fitPreference" value="regular" checked><span>Just right ✨</span></label><label><input type="radio" name="fitPreference" value="roomy"><span>Room to grow 🌱</span></label></fieldset><button class="pill dark fit-submit" type="submit">Find my baby's size <svg class="icon"><use href="#i-arrow"/></svg></button></div>
             <div class="fit-step" id="fitResult" hidden><div class="fit-result-badge">OUR SIZE SUGGESTION</div><div class="size-result" id="sizeResult">70</div><p id="sizeExplanation"></p><div class="fit-result-actions"><button class="pill dark" type="button" id="shopMySize">Explore pieces <svg class="icon"><use href="#i-arrow"/></svg></button><button class="pill subtle" type="button" id="fitRestart">Try again</button></div><label class="save-consent"><input id="saveFit" type="checkbox"> Save this measurement on my device for next time</label><button type="button" id="saveFitButton" class="save-fit-link">Save this profile</button><span id="fitSaved" role="status"></span></div>
-          </form><div class="fit-widget-footer"><span>✿ Your little one is one of a kind.</span><span>Privacy-first demo</span></div>
+          </form><div class="fit-widget-footer"><span>✿ Your little one is one of a kind.</span><span>Your information stays on this device</span></div>
         </div>
       </div>
     </section>
     <section class="section proof-section" id="proof">
       <div class="container">
-        <div class="section-heading center reveal"><span class="eyebrow">03 / PROOF BEFORE PROMISES</span><h2>Because trust should be <em>testable.</em></h2><p>These are Blotti's proposed validation pathways, not certificates already issued to the brand.</p></div>
-        <div class="proof-grid">
-          <article class="proof-card reveal"><div class="proof-icon pink"><svg class="icon"><use href="#i-shield"/></svg></div><span class="proof-status">PLANNED COMPLIANCE CHECK</span><h3>Textile chemical safety</h3><p>Assess applicable Vietnamese requirements for formaldehyde and restricted aromatic amines from azo dyes, including the 2026 amendment.</p><a target="_blank" rel="noopener noreferrer" href="https://vanban.chinhphu.vn/?classid=0&docid=218714&pageid=27160">QCVN 01:2017/BCT + Amendment 01:2026 ↗</a></article>
-          <article class="proof-card reveal"><div class="proof-icon blue"><svg class="icon"><use href="#i-ruler"/></svg></div><span class="proof-status">PLANNED LAB METHODS</span><h3>Wash & size stability</h3><p>Plan washing procedures using ISO 6330 and evaluate dimensional changes with ISO 5077. Measured data should appear by fabric and batch.</p><a href="https://www.iso.org/standard/75934.html" target="_blank" rel="noopener noreferrer">ISO 6330:2021 ↗</a></article>
-          <article class="proof-card reveal"><div class="proof-icon green"><svg class="icon"><use href="#i-sparkle"/></svg></div><span class="proof-status">POTENTIAL FUTURE TARGET</span><h3>Independent textile certification</h3><p>Explore OEKO-TEX® STANDARD 100 Product Class I for baby articles. This is a potential certification goal, not a Blotti credential.</p><a target="_blank" rel="noopener noreferrer" href="https://www.oeko-tex.com/en/our-standards/oeko-tex-standard-100/">Understand STANDARD 100 ↗</a></article>
+        <div class="section-heading center reveal">
+          <span class="eyebrow">03 / THE BLOTTI QUALITY JOURNEY</span>
+          <h2>Little details. <em>Real standards.</em></h2>
+          <p>Quality begins long before the first wear. Here is how we are shaping Blotti's approach to fabrics, construction, care and product information.</p>
         </div>
-        <div class="proof-disclaimer reveal"><b><svg class="icon"><use href="#i-shield"/></svg> The transparent promise</b><p>No test reports, laboratory partners, approvals, or certifications have been provided for this demo. No Blotti product is described here as certified. When actual documents exist, this section should show the report ID, tested product, lab, issue date, results, and a verification link.</p></div>
+        <div class="quality-photo-grid">
+          <article class="quality-photo-card reveal">
+            <div class="quality-photo"><img src="assets/blotti-fabric-cotton.webp" alt="Blotti proposed cotton-blend fabric swatch" loading="lazy"><span class="quality-no">01</span></div>
+            <div class="quality-copy"><span>THE MATERIAL</span><h3>Made to feel considered</h3><p>We begin with fabric specifications for hand-feel, stretch and comfort, then evaluate samples before any final production decision.</p></div>
+          </article>
+          <article class="quality-photo-card reveal">
+            <div class="quality-photo"><img src="https://images.unsplash.com/photo-1768693602418-260d828b878d?auto=format&fit=crop&w=850&q=80" alt="Editorial photograph of neatly arranged baby clothing and fabrics" loading="lazy"><span class="quality-no">02</span></div>
+            <div class="quality-copy"><span>THE EVERYDAY TEST</span><h3>Care is part of quality</h3><p>Our planned evaluation considers wash performance, dimensional change and appearance after care, with relevant ISO methods as reference points.</p></div>
+          </article>
+          <article class="quality-photo-card reveal">
+            <div class="quality-photo"><img src="assets/blotti-trims.webp" alt="Blotti garment trims and construction details concept reference" loading="lazy"><span class="quality-no">03</span></div>
+            <div class="quality-copy"><span>THE FINISHING TOUCH</span><h3>Small details matter</h3><p>Construction choices such as seams, labels, fastenings and finishing are reviewed as part of our babywear design process.</p></div>
+          </article>
+          <article class="quality-photo-card reveal">
+            <div class="quality-photo"><img src="assets/blotti-play-overview.webp" alt="Blotti coordinated ActivePlay capsule collection concept" loading="lazy"><span class="quality-no">04</span></div>
+            <div class="quality-copy"><span>THE INFORMATION</span><h3>Clarity comes first</h3><p>We want parents to understand sizing, composition, care instructions and the evidence behind any product claim.</p></div>
+          </article>
+        </div>
+        <div class="quality-evidence reveal">
+          <div><span class="eyebrow">OUR STANDARDS JOURNEY</span><h3>Evidence, not empty promises.</h3><p>We are preparing for applicable Vietnamese textile-safety requirements and exploring independent testing methods. Product-level test reports and certifications will be shown here only after they are issued and verified.</p></div>
+          <div class="quality-evidence-links"><a href="policies.html#quality" class="pill outline">How we approach quality <svg class="icon"><use href="#i-arrow"/></svg></a><a href="https://www.oeko-tex.com/en/our-standards/oeko-tex-standard-100/" target="_blank" rel="noopener noreferrer" class="proof-source-link">About OEKO-TEX® STANDARD 100 ↗</a></div>
+        </div>
       </div>
     </section>
     <section class="section story-section" id="story">
@@ -127,17 +147,70 @@
     </section>
     <section class="inv-teaser-section" id="investorTeaser" aria-labelledby="investorTeaserTitle">
       <div class="container inv-teaser-layout">
-        <div class="inv-teaser-copy"><span class="eyebrow">A BIGGER STORY IS GROWING</span><h2 id="investorTeaserTitle">Little by little.<br><em>Built for the long term.</em></h2><p>Explore the Blotti investment thesis, market opportunity, projected financials, five-year roadmap and proposed capital plan.</p><div class="inv-teaser-tags"><span>✳ Strategy</span><span>✳ Market metrics</span><span>✳ Financial roadmap</span></div><a href="investors.html" class="pill dark">Enter the investor room <svg class="icon"><use href="#i-arrow"/></svg></a><small>Concept-stage investor briefing · all projections labelled</small></div>
-        <a class="inv-teaser-visual" href="investors.html" aria-label="Explore Blotti's investor briefing"><img src="assets/blotti-collection.webp" alt="Illustrative babywear display"><div class="inv-teaser-visual-sticker">A little vision,<br>big potential <span>♥</span></div></a>
+        <div class="inv-teaser-copy">
+          <span class="eyebrow">A BIGGER STORY IS GROWING</span>
+          <h2 id="investorTeaserTitle">Little by little.<br><em>Built for the long term.</em></h2>
+          <p>Blotti is imagining more than babywear: a thoughtful design-led brand combining material quality, practical fit guidance and a relationship with families that grows from one stage to the next.</p>
+          <div class="inv-teaser-tags" aria-label="Investor briefing topics"><span>Brand strategy</span><span>Market opportunity</span><span>Financial roadmap</span></div>
+          <a href="investors.html" class="pill dark">Explore the investor briefing <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <p class="inv-teaser-footnote">Early-stage investor overview · Projections clearly identified</p>
+        </div>
+        <a class="inv-teaser-visual" href="investors.html" aria-label="Explore Blotti's investor briefing">
+          <img src="https://images.unsplash.com/photo-1766918780916-228d10b071be?auto=format&fit=crop&w=1100&q=84" alt="Editorial photograph of colorful babywear arranged on hangers" loading="lazy">
+          <span class="inv-photo-caption">Thoughtful beginnings. Bigger possibilities. <span aria-hidden="true">↗</span></span>
+        </a>
       </div>
     </section>
-    <section class="section guide-section" id="journal"><div class="container"><div class="section-heading split reveal"><div><span class="eyebrow">THE LITTLE LEARNING CORNER</span><h2>For all those <em>firsts.</em></h2></div><p>Small guides to help you shop a little more confidently. Made for curious, caring parents.</p></div><div class="guide-grid"><article class="guide-card reveal"><div class="guide-visual guide-purple">📏<span>01</span></div><div><span class="guide-kicker">FIT NOTES · 3 MIN READ</span><h3>Why age isn't the whole story of size</h3><p>Height, ease, and simple measurements make a better starting point.</p><button type="button" data-guide="fit" class="guide-open">Read the little guide ↗</button></div></article><article class="guide-card reveal"><div class="guide-visual guide-peach">🧺<span>02</span></div><div><span class="guide-kicker">FABRIC NOTES · 3 MIN READ</span><h3>What does “wash-tested” really mean?</h3><p>A friendly introduction to wash procedures and dimensional change.</p><button type="button" data-guide="fabric" class="guide-open">Read the little guide ↗</button></div></article><article class="guide-card reveal"><div class="guide-visual guide-mint">🌱<span>03</span></div><div><span class="guide-kicker">PARENT NOTES · 2 MIN READ</span><h3>Building a wardrobe that grows with baby</h3><p>Choose versatile essentials before adding new sizes and styles.</p><button type="button" data-guide="growth" class="guide-open">Read the little guide ↗</button></div></article></div></div></section>
-    <section class="section faq-section" id="faq"><div class="container faq-layout"><div class="faq-intro reveal"><span class="eyebrow">HAPPY TO HELP</span><h2>Little questions,<br><em>lovely answers.</em></h2><p>Wondering about our approach? We're here to make the details clear.</p><a href="mailto:hello@example.com?subject=Blotti%20concept%20enquiry" class="text-link" id="contactLink">Contact (demo only) ↗</a></div><div class="faqs reveal"><details><summary>Is Blotti available to purchase right now?<span>+</span></summary><p>Not through this website. This is a storefront prototype based on a business proposal. Products, stock, shipping, checkout, and pricing beyond the proposed hero price are illustrative.</p></details><details><summary>What is the Learning Fit System?<span>+</span></summary><p>Blotti proposes combining basic measurements, customer feedback, and improved size recommendations over time. The interactive size finder here is a simple rule-based demonstration, not a validated recommendation engine.</p></details><details><summary>Are Blotti products certified?<span>+</span></summary><p>No issued certification or finished-product report has been supplied for this concept. Our Proof Lab distinguishes required/considered testing from evidence that has actually been obtained.</p></details><details><summary>How do I choose a size?<span>+</span></summary><p>Try the Fit Finder, starting with your baby's measured height. The result is an illustrative suggestion; check final garment measurements and brand-specific tolerances before any real purchase.</p></details><details><summary>What about delivery, returns, or exchanges?<span>+</span></summary><p>Real shipping, returns, warranty, and exchange policies are not established here. They would need to be defined and published before launch.</p></details></div></div></section>
-    <section class="newsletter-section"><div class="newsletter-inner container reveal"><span class="newsletter-star">✳</span><div><span class="eyebrow">A LITTLE NOTE FROM US</span><h2>Good things <em>grow together.</em></h2><p>Join our concept mailing list for a little dose of Blotti love. No email will actually be sent.</p></div><form class="newsletter-form" id="newsletterForm"><label for="newsletterEmail">Email address</label><div><input type="email" id="newsletterEmail" required placeholder="yourname@example.com"><button class="pill dark" type="submit">Count me in <svg class="icon"><use href="#i-arrow"/></svg></button></div><span id="newsletterMessage" role="status"></span></form></div></section>
+    <section class="section guide-section" id="journal">
+      <div class="container">
+        <div class="section-heading split reveal"><div><span class="eyebrow">THE LITTLE LEARNING CORNER</span><h2>For all those <em>firsts.</em></h2></div><p>Small, practical guides to help parents shop thoughtfully and care for the things their little ones wear.</p></div>
+        <div class="guide-grid">
+          <article class="guide-card reveal">
+            <div class="guide-card-media"><img src="https://images.unsplash.com/photo-1766918780914-5df4a5a98c44?auto=format&fit=crop&w=900&q=83" alt="Editorial photograph of a row of baby clothes on hangers" loading="lazy"><span class="guide-number">01</span></div>
+            <div class="guide-card-body"><span class="guide-kicker">FIT NOTES · 3 MIN READ</span><h3>Why age isn't the whole story of size</h3><p>Height, body proportions and room to move all help you make a more confident first size choice.</p><button type="button" data-guide="fit" class="guide-open">Read the guide <span aria-hidden="true">↗</span></button></div>
+          </article>
+          <article class="guide-card reveal">
+            <div class="guide-card-media"><img src="https://images.unsplash.com/photo-1768693602418-260d828b878d?auto=format&fit=crop&w=900&q=82" alt="Editorial photograph showing baby textiles arranged for care" loading="lazy"><span class="guide-number">02</span></div>
+            <div class="guide-card-body"><span class="guide-kicker">FABRIC NOTES · 3 MIN READ</span><h3>What does “wash-tested” really mean?</h3><p>From washing conditions to shape retention, learn which details make textile testing meaningful.</p><button type="button" data-guide="fabric" class="guide-open">Read the guide <span aria-hidden="true">↗</span></button></div>
+          </article>
+          <article class="guide-card reveal">
+            <div class="guide-card-media"><img src="https://images.unsplash.com/photo-1766918780916-228d10b071be?auto=format&fit=crop&w=900&q=82" alt="Editorial photograph of coordinated pastel baby clothes" loading="lazy"><span class="guide-number">03</span></div>
+            <div class="guide-card-body"><span class="guide-kicker">PARENT NOTES · 2 MIN READ</span><h3>Building a wardrobe that grows with baby</h3><p>Discover how a small collection of versatile essentials can work across little everyday moments.</p><button type="button" data-guide="growth" class="guide-open">Read the guide <span aria-hidden="true">↗</span></button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-intro reveal"><span class="eyebrow">HERE TO MAKE THINGS SIMPLE</span><h2>Little questions,<br><em>lovely answers.</em></h2><p>Learn about our first collection, size guidance and the care behind every detail.</p><a href="policies.html" class="text-link">Read our customer care guide ↗</a></div>
+        <div class="faqs reveal">
+          <details><summary>When can I shop the collection?<span>+</span></summary><p>Our first collection is being introduced as a preview. The launch date and availability will be shared when product details and ordering arrangements are finalized. The current website doesn't accept orders.</p></details>
+          <details><summary>How does Blotti's Fit Finder work?<span>+</span></summary><p>Our early Fit Finder suggests a starting size from your baby's measured height and fit preference. It is a guide, not a substitute for approved garment measurements. Learn more in our <a href="policies.html#size">size guide</a>.</p></details>
+          <details><summary>What goes into Blotti's quality approach?<span>+</span></summary><p>We focus on material specifications, construction, wash performance and appropriate chemical-safety requirements. Independent certificates will be linked only after they have been issued. <a href="policies.html#quality">View our quality notes</a>.</p></details>
+          <details><summary>What will shipping and exchanges look like?<span>+</span></summary><p>We've outlined the intended service experience for our Vietnam launch, including delivery estimates and a proposed exchange process. These policies will be finalized before orders begin. <a href="policies.html#shipping">See shipping</a> and <a href="policies.html#returns">returns & exchanges</a>.</p></details>
+          <details><summary>How do I care for Blotti pieces?<span>+</span></summary><p>Use the care label on your garment as the primary guide. Our <a href="policies.html#care">fabric care notes</a> share helpful general habits for babywear.</p></details>
+        </div>
+      </div>
+    </section>
+    <section class="newsletter-section">
+      <div class="newsletter-inner container reveal">
+        <div class="newsletter-visual"><img src="assets/blotti-packaging.webp" alt="Blotti illustrated gift packaging concept" loading="lazy"></div>
+        <div class="newsletter-editorial"><span class="eyebrow">THE LITTLE BLOTTI JOURNAL</span><h2>Good things <em>grow together.</em></h2><p>Thoughtful reads on everyday comfort, finding the right fit and caring for little wardrobes.</p><div class="newsletter-cta-row"><a href="#journal" class="pill dark">Explore our little guides <svg class="icon"><use href="#i-arrow"/></svg></a><a href="policies.html#care" class="text-link">Care for your pieces ↗</a></div></div>
+      </div>
+    </section>
   </main>
-  <footer class="footer"><div class="container footer-grid"><div class="footer-brand"><a class="wordmark footer-logo" href="#top">Blotti<span>BABYWEAR</span></a><p>Where thoughtful fabric meets effortless comfort.</p><div class="footer-social"><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram website, not a Blotti account"><svg class="icon"><use href="#i-instagram"/></svg></a><a href="#top" aria-label="Back to top">↑</a></div></div><div><h3>EXPLORE</h3><a href="#shop">Shop all</a><a href="#collections">Collections</a><a href="#fit">Fit Finder</a><a href="#journal">The learning corner</a></div><div><h3>THE BLOTTI WAY</h3><a href="#fabric">Our fabric</a><a href="#proof">Proof Lab</a><a href="#story">Mission & vision</a><a href="investors.html">For investors ↗</a><a href="#faq">FAQ</a></div><div><h3>GOOD TO KNOW</h3><p>Made as an academic business concept in Vietnam. No genuine purchases, subscriptions, deliveries, or customer support on this demo.</p><a href="#proof" class="footer-proof">Standards & evidence ↗</a></div></div><div class="container footer-bottom"><span>© 2026 Blotti Babywear · Concept store</span><span>Images are editorial placeholders from Unsplash; product illustrations, prices and descriptions are conceptual.</span><a href="#top">Back to top ↑</a></div><div class="footer-watermark" aria-hidden="true">Blotti</div></footer>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a class="wordmark footer-logo" href="#top">Blotti<span>BABYWEAR</span></a><p>Where thoughtful fabric meets effortless comfort.</p><a href="#story" class="footer-story-link">Discover our story ↗</a></div>
+      <div><h3>EXPLORE</h3><a href="#shop">Shop the edit</a><a href="#collections">Collections</a><a href="#fit">Fit Finder</a><a href="#journal">Little learning corner</a></div>
+      <div><h3>ABOUT BLOTTI</h3><a href="#fabric">Our fabric</a><a href="#proof">Quality journey</a><a href="#story">Mission & vision</a><a href="investors.html">For investors ↗</a></div>
+      <div><h3>CUSTOMER CARE</h3><a href="policies.html#shipping">Shipping & delivery</a><a href="policies.html#returns">Returns & exchanges</a><a href="policies.html#size">Size guide</a><a href="policies.html#care">Product care</a><a href="policies.html#quality">Quality & standards</a><a href="policies.html#contact">Contact</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 Blotti Babywear</span><span>Collection preview · Final ordering and service terms will be shared before launch.</span><a href="#top">Back to top ↑</a></div>
+    <div class="footer-watermark" aria-hidden="true">Blotti</div>
+  </footer>
   <div class="overlay" id="overlay" hidden></div>
-  <aside id="cartDrawer" class="drawer" aria-hidden="true" aria-label="Your shopping bag"><div class="drawer-head"><div><span class="eyebrow">YOUR HAPPY LITTLE BAG</span><h2>My bag <span id="drawerCartCount">(0)</span></h2></div><button class="icon-button drawer-close" data-close aria-label="Close bag"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="cartItems" class="drawer-scroll"></div><div class="drawer-bottom"><div class="subtotal-row"><span>Subtotal</span><b id="cartSubtotal">0 ₫</b></div><p>Illustrative total. Shipping and taxes are not calculated.</p><button type="button" id="checkoutDemo" class="pill dark checkout-button">Checkout unavailable in demo <svg class="icon"><use href="#i-arrow"/></svg></button><small>This storefront does not accept payments or orders.</small></div></aside>
+  <aside id="cartDrawer" class="drawer" aria-hidden="true" aria-label="Your shopping bag"><div class="drawer-head"><div><span class="eyebrow">YOUR HAPPY LITTLE BAG</span><h2>My bag <span id="drawerCartCount">(0)</span></h2></div><button class="icon-button drawer-close" data-close aria-label="Close bag"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="cartItems" class="drawer-scroll"></div><div class="drawer-bottom"><div class="subtotal-row"><span>Subtotal</span><b id="cartSubtotal">0 ₫</b></div><p>Estimated subtotal. Delivery fees are confirmed when ordering opens.</p><button type="button" id="checkoutDemo" class="pill dark checkout-button">Checkout opens at launch <svg class="icon"><use href="#i-arrow"/></svg></button><small>Ordering opens when our first collection is ready.</small></div></aside>
   <aside id="wishlistDrawer" class="drawer" aria-hidden="true" aria-label="Saved favorites"><div class="drawer-head"><div><span class="eyebrow">SAVED WITH LOVE</span><h2>My favorites</h2></div><button class="icon-button drawer-close" data-close aria-label="Close favorites"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="wishlistItems" class="drawer-scroll"></div></aside>
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle"><div class="modal-shell"><button class="icon-button modal-close" id="modalClose" aria-label="Close dialog"><svg class="icon"><use href="#i-close"/></svg></button><div id="modalContent"></div></div></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
