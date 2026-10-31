@@ -92,6 +92,20 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
             }
             await toggle.click();
           }
+          const team=page.locator('.inv-person-card');
+          if(await team.count()!==7){
+            console.error(prefix+' Expected seven member cards, found '+await team.count());
+            failed=true;
+          }
+          await page.locator('#team').scrollIntoViewIfNeeded();
+          await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-team.png'});
+          const filmButton=page.locator('#investorFilmPlay');
+          await filmButton.click();
+          const player=page.locator('#investorFilmFrame iframe');
+          if(await player.count()!==1 || !(await player.getAttribute('src')).includes('1brvMZ4LMBH9ObX5ex9AN4tygYYxp3LxK/preview')){
+            console.error(prefix+' Drive video did not load after pressing play');
+            failed=true;
+          }
           await page.locator('#vision').scrollIntoViewIfNeeded();
           await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-vision.png'});
         }
