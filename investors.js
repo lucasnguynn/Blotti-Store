@@ -37,7 +37,26 @@ if(investorFilmPlay){
     player.referrerPolicy='strict-origin-when-cross-origin';
     player.loading='eager';
     holder.replaceChildren(player);
+    holder.classList.add('is-playing');
+    const actions=$('#investorFilmActions');
+    if(actions) actions.classList.add('is-ready');
     const note=$('.inv-film-inline-note');
-    if(note) note.textContent='Video viewer loaded from Google Drive. If it is unavailable in your browser, use “Watch on Google Drive”.';
+    if(note) note.textContent='Google Drive player loaded. On phones, tap “Larger video” for extra room around its controls, or open directly in Drive.';
+
+  });
+}
+
+/* Google Drive's preview adds its own native toolbar, which can crowd a
+   16:9 iframe on iPhone. Allow an intentionally taller phone viewport
+   without changing the original widescreen desktop player. */
+const filmExpandButton=$('#investorFilmExpand');
+if(filmExpandButton){
+  filmExpandButton.addEventListener('click',()=>{
+    const holder=$('#investorFilmFrame');
+    if(!holder || !holder.classList.contains('is-playing')) return;
+    const expanded=holder.classList.toggle('is-expanded');
+    filmExpandButton.setAttribute('aria-pressed',String(expanded));
+    const label=$('#investorFilmExpandText');
+    if(label) label.textContent=expanded?'Compact video':'Larger video';
   });
 }
