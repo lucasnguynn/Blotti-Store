@@ -22,3 +22,22 @@ $('#copyEnquiry').addEventListener('click',async()=>{
 });
 $('#printBrief').addEventListener('click',()=>window.print());
 selectFinance('revenue');selectYear('2026');
+/* Click-to-load video. No third-party player or network request until activated.
+   The file and cover originate from the user's supplied Blotti Drive folder. */
+const investorFilmPlay = $('#investorFilmPlay');
+if(investorFilmPlay){
+  investorFilmPlay.addEventListener('click',()=>{
+    const holder=$('#investorFilmFrame');
+    if(!holder || holder.querySelector('iframe')) return;
+    const player=document.createElement('iframe');
+    player.src='https://drive.google.com/file/d/1brvMZ4LMBH9ObX5ex9AN4tygYYxp3LxK/preview';
+    player.title='Blotti Babywear team video - Google Drive player';
+    player.allow='autoplay; fullscreen; picture-in-picture';
+    player.allowFullscreen=true;
+    player.referrerPolicy='strict-origin-when-cross-origin';
+    player.loading='eager';
+    holder.replaceChildren(player);
+    const note=$('.inv-film-inline-note');
+    if(note) note.textContent='Video viewer loaded from Google Drive. If it is unavailable in your browser, use “Watch on Google Drive”.';
+  });
+}
