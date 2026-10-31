@@ -34,7 +34,7 @@ jobs:
           for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','journal','siteSearch','proof','story','collections','shop','investorTeaser']) {
             assert(home.includes('id="'+id+'"'), 'Missing storefront element: '+id);
           }
-          for(const id of ['thesis','market','strategy','portfolio','metrics','financials','roadmap','raise','disclosures','sources']) {
+          for(const id of ['thesis','market','strategy','portfolio','metrics','financials','roadmap','team','film','raise','disclosures','sources']) {
             assert(inv.includes('id="'+id+'"'), 'Missing investor section: '+id);
           }
           for(const keyword of ['Signature Fabric','Learning Fit','MISSION','VISION','STANDARDS JOURNEY','Collection preview']){
@@ -67,6 +67,19 @@ jobs:
           assert((home.match(/class="blotti-arrow-icon/g)||[]).length>=10,'Storefront arrows were not replaced');
           assert((inv.match(/class="blotti-arrow-icon/g)||[]).length>=20,'Investor arrows were not replaced');
           assert(inv.includes('class="inv-menu-glyph"'),'Investor mobile CSS menu missing');
+          const teamNames=['Hồ Quỳnh Như','Nguyễn Đặng Quốc Đạt','Nguyễn Ngọc Thảo An','Lê Hồ Thu Giang','Vương Hồng Châu','Lưu Ngọc Phương Khánh','Trịnh Trần Ngọc Thảo Vy'];
+          for(const name of teamNames)assert(inv.includes(name),'Missing team member from source PDF: '+name);
+          assert((inv.match(/class="inv-person-card/g)||[]).length===7,'Investor team must contain all seven slide members');
+          assert(inv.includes('id="investorFilmPlay"') && inv.includes('assets/team/blotti-team-film-cover.webp'),'Film thumbnail/play interaction missing');
+          assert(texts['investors.js'].includes('1brvMZ4LMBH9ObX5ex9AN4tygYYxp3LxK/preview'),'Wrong Google Drive film ID');
+          assert(texts['investors.js'].includes('investorFilmPlay'),'Film play button is not wired');
+          const portraits=Array.from(inv.matchAll(/src="(assets\\/team\\/[a-z-]+\\.webp)"/g),m=>m[1]);
+          assert.equal(portraits.length,8,'Seven portraits and one poster should be present');
+          for(const asset of portraits){
+            assert(fs.existsSync(asset),'Missing local team asset: '+asset);
+            const data=fs.readFileSync(asset);
+            assert(data.length>1000 && data.toString('ascii',0,4)==='RIFF' && data.toString('ascii',8,12)==='WEBP','Invalid portrait/cover WebP: '+asset);
+          }
           assert(texts['investors.css'].includes('.inv-vision-band:before{content:""'),'iOS emoji pseudo-element not removed');
           for(const file of files){
             const emoji = /[\u2600-\u27bf\u{1f300}-\u{1faff}]/gu;

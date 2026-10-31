@@ -123,3 +123,105 @@
   .inv-flywheel-steps .inv-flywheel-connector .blotti-arrow-icon{width:12px;height:12px;min-width:12px}
   .inv-hero-buttons .blotti-arrow-icon{width:14px;height:14px;min-width:14px}
 }
+
+
+/* MEET THE TEAM — portraits and names faithfully reproduced from proposal p.8 */
+.inv-team-section{background:linear-gradient(145deg,#fffaf8 0%,#fcf4f7 62%,#f9f0f4 100%)}
+.inv-team-section .inv-section-header{margin-bottom:32px}
+.inv-team-lead{display:flex;align-items:center;gap:19px;background:#efe5f0;border:1px solid #e6d8e9;border-radius:18px;padding:18px 24px;margin-bottom:34px}
+.inv-team-lead-mark{display:block;width:29px;height:29px;flex:0 0 29px;border-radius:50%;background:#ab83af;box-shadow:0 0 0 8px #dac4df}
+.inv-team-lead p{font:500 19px/1.35 var(--heading);margin:0;flex:1}
+.inv-team-lead>span:last-child{flex:0 0 auto;font-size:9px;font-weight:800;color:#a0789e;letter-spacing:.13em}
+.inv-team-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px 19px}
+.inv-person-card{grid-column:span 3;display:flex;flex-direction:column;min-width:0;border:1px solid #ecdfeb;border-radius:125px 125px 19px 19px;background:#fff;overflow:hidden;box-shadow:0 10px 32px #7357740c;transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+.inv-person-card:nth-child(-n+3){grid-column:span 4}
+.inv-person-card:nth-child(4n+1) .inv-person-portrait{background:#f2e5ee}
+.inv-person-card:nth-child(4n+2) .inv-person-portrait{background:#e9e5f4}
+.inv-person-card:nth-child(4n+3) .inv-person-portrait{background:#f1ebe2}
+.inv-person-card:nth-child(4n+4) .inv-person-portrait{background:#e7edeb}
+.inv-person-card:hover{transform:translateY(-5px);box-shadow:0 20px 43px #7357741c}
+.inv-person-card--ceo{border-color:#c9a9cf;background:#fffafc;box-shadow:0 14px 32px #ad8cb025}
+.inv-person-portrait{height:270px;overflow:hidden;position:relative;border-radius:125px 125px 0 0}
+.inv-person-card:nth-child(-n+3) .inv-person-portrait{height:320px}
+.inv-person-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 21%;transition:transform .55s var(--ease);filter:saturate(.9)}
+.inv-person-card:hover .inv-person-portrait img{transform:scale(1.04)}
+.inv-person-count{display:grid;place-items:center;position:absolute;top:18px;right:18px;width:34px;height:34px;background:#fffdfbe8;color:#876689;border-radius:50%;font:500 15px var(--heading)}
+.inv-person-details{padding:20px 19px 24px;flex:1;display:flex;flex-direction:column;min-width:0}
+.inv-person-discipline{font-size:9px;letter-spacing:.12em;font-weight:800;color:#aa849e;line-height:1.5}
+.inv-person-details h3{font:500 clamp(20px,2vw,27px)/1.17 var(--heading);margin:12px 0 9px;letter-spacing:-.015em;overflow-wrap:break-word}
+.inv-person-details p{font-size:11px;line-height:1.5;color:#8a7486;margin:0}
+.inv-team-source{margin:24px 0 0;font-size:10px;line-height:1.7;color:#9f8d9b}
+.inv-film-section{background:linear-gradient(130deg,#e6dceb 0%,#f5e7ea 54%,#f2e9db 100%)}
+.inv-film-layout{display:grid;grid-template-columns:minmax(0,.79fr) minmax(0,1.21fr);gap:clamp(25px,5vw,70px);align-items:center}
+.inv-film-intro{min-width:0}
+.inv-film-intro h2{font-size:clamp(3rem,4.5vw,5rem);margin:17px 0 23px;line-height:1.13}
+.inv-film-intro>p:not(.inv-film-caption){max-width:460px;font-size:15px;line-height:1.75;color:#705c6f}
+.inv-film-drive-link{display:inline-flex;align-items:center;gap:9px;border-bottom:1px solid currentColor;color:#6f4a6c;font-size:12px;font-weight:800;padding:6px 0;margin-top:17px;text-decoration:none}
+.inv-film-drive-link:hover{color:#a77caa}
+.inv-film-caption{max-width:420px;margin-top:22px!important;font-size:10px!important;line-height:1.65!important;color:#998596!important}
+.inv-film-display{min-width:0}
+.inv-film-frame{aspect-ratio:16/9;position:relative;overflow:hidden;border:11px solid #fff8f7;border-radius:26px;background:#f5e8de;box-shadow:0 25px 58px #76537027}
+.inv-film-poster{width:100%;height:100%;position:absolute;inset:0;padding:0;cursor:pointer;border:0;display:block;text-align:left;overflow:hidden;background:#f5e8de}
+.inv-film-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s var(--ease)}
+.inv-film-poster:before{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,#33263999);z-index:1;pointer-events:none}
+.inv-film-poster:hover img{transform:scale(1.04)}
+.inv-film-play{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);height:84px;width:84px;border-radius:50%;background:#fff9f4f2;box-shadow:0 10px 35px #5438503b;display:grid;place-items:center;color:#805780;transition:transform .2s var(--ease),background .2s}
+.inv-film-play svg{width:31px;height:31px;fill:currentColor;stroke:none;margin-left:5px}
+.inv-film-poster:hover .inv-film-play{transform:translate(-50%,-50%) scale(1.07);background:white}
+.inv-film-poster:focus-visible{outline:4px solid #9b70a7;outline-offset:-7px}
+.inv-film-poster-label{position:absolute;z-index:2;left:24px;right:24px;bottom:19px;display:flex;justify-content:space-between;gap:12px;color:white;font-size:11px;font-weight:800;letter-spacing:.12em}
+.inv-film-poster-label>span{opacity:.85;font-size:10px;letter-spacing:.08em}
+.inv-film-frame iframe{display:block;width:100%;height:100%;border:0;position:absolute;inset:0;background:#27212b}
+.inv-film-inline-note{margin:12px 3px 0;font-size:10px;color:#8c7988}
+@media(max-width:1120px){
+.inv-team-grid{gap:19px 14px}
+.inv-person-card:nth-child(-n+3) .inv-person-portrait{height:275px}
+.inv-person-portrait{height:245px}
+.inv-person-details{padding:17px 15px 22px}
+.inv-person-details h3{font-size:21px}
+}
+@media(max-width:900px){
+.inv-team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.inv-person-card,.inv-person-card:nth-child(-n+3){grid-column:auto}
+.inv-person-portrait,.inv-person-card:nth-child(-n+3) .inv-person-portrait{height:315px}
+.inv-person-card:last-child{grid-column:span 2;display:grid;grid-template-columns:minmax(0,.45fr) minmax(0,.55fr);align-items:center;border-radius:150px 24px 24px 150px}
+.inv-person-card:last-child .inv-person-portrait{height:300px;border-radius:150px 0 0 150px}
+.inv-person-card:last-child .inv-person-details{padding:28px}
+.inv-film-layout{grid-template-columns:1fr;gap:27px}
+.inv-film-intro>p:not(.inv-film-caption){max-width:650px}
+.inv-film-caption{max-width:650px}
+}
+@media(max-width:650px){
+.inv-team-section,.inv-film-section{padding:70px 0}
+.inv-team-lead{padding:17px 16px;gap:13px;align-items:flex-start}
+.inv-team-lead-mark{width:18px;height:18px;flex-basis:18px;box-shadow:0 0 0 5px #dac4df;margin-top:4px}
+.inv-team-lead p{font-size:16px}
+.inv-team-lead>span:last-child{display:none}
+.inv-team-grid{gap:12px}
+.inv-person-card{border-radius:110px 110px 15px 15px}
+.inv-person-portrait,.inv-person-card:nth-child(-n+3) .inv-person-portrait{height:220px;border-radius:110px 110px 0 0}
+.inv-person-count{top:10px;right:10px;width:26px;height:26px;font-size:12px}
+.inv-person-details{padding:15px 12px 18px}
+.inv-person-discipline{font-size:8px;letter-spacing:.075em}
+.inv-person-details h3{font-size:19px;line-height:1.2;margin:9px 0 7px}
+.inv-person-details p{font-size:10px}
+.inv-person-card:last-child .inv-person-portrait{height:225px}
+.inv-person-card:last-child .inv-person-details{padding:20px}
+.inv-film-intro h2{font-size:clamp(2.8rem,10vw,4rem)}
+.inv-film-intro>p:not(.inv-film-caption){font-size:14px}
+.inv-film-frame{border-width:6px;border-radius:18px}
+.inv-film-play{height:60px;width:60px}
+.inv-film-play svg{width:24px;height:24px}
+.inv-film-poster-label{left:13px;right:13px;bottom:12px;font-size:9px}
+.inv-film-poster-label>span{font-size:9px}
+}
+@media(max-width:385px){
+.inv-person-portrait,.inv-person-card:nth-child(-n+3) .inv-person-portrait{height:195px}
+.inv-person-details h3{font-size:17px}
+.inv-person-card:last-child .inv-person-portrait{height:215px}
+.inv-person-card:last-child .inv-person-details{padding:14px}
+.inv-film-play{width:54px;height:54px}
+}
+@media(prefers-reduced-motion:reduce){
+.inv-person-card,.inv-person-portrait img,.inv-film-poster img,.inv-film-play{transition:none}
+}

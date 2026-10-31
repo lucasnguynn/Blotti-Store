@@ -102,6 +102,28 @@ The investor hub includes:
 
 **Legal boundary:** The briefing is an academic business concept, not a securities offering, independently audited model or promise of a return. No claim of Blotti product certification, realized sales or completed fundraising is made.
 
+## Investor Relations: Meet the Team and Blotti Film
+
+The For Investors page at `investors.html#team` now includes an image-led **Meet Our Team** section with all seven named contributors and exactly the titles documented on **page 8** of `BUSINESS PROPOSAL - BMGT Group 2 (1) (1).pdf`:
+
+| Team member | Proposal role |
+|---|---|
+| Hồ Quỳnh Như | Marketing & Brand Lead |
+| Nguyễn Đặng Quốc Đạt | CEO |
+| Nguyễn Ngọc Thảo An | Finance & Investment Lead |
+| Lê Hồ Thu Giang | Operations & Supply Chain Lead |
+| Vương Hồng Châu | Product & Fabric Lead |
+| Lưu Ngọc Phương Khánh | Strategy & Business Development Lead |
+| Trịnh Trần Ngọc Thảo Vy | Technology & Data Lead |
+
+**Portraits**: Seven original photographs were extracted from the presentation PDF and optimized to local `assets/team/*.webp`. No faces or biographies were generated or replaced. Team appointments are attributed to the supplied proposal; their current status has not been independently verified.
+
+**Video**: `investors.html#film` embeds the `1026(1).mp4` Google Drive asset from [the supplied Blotti folder](https://drive.google.com/drive/folders/1gfEewFXPtG0waZGINpIhqGBXiFT-LLeD). It loads only when a user clicks the poster, reducing initial page weight and avoiding automatic third-party tracking. The official `1026(1)-Cover.jpg` is optimized and stored locally as `assets/team/blotti-team-film-cover.webp`. The video itself (~121 MB) stays on Google Drive and is **not** committed to GitHub. There is always a direct Google Drive viewing link as a fallback.
+
+Google Drive sharing controls determine whether external visitors can actually view the film. The account metadata checked on October 31, 2026, reported an **anyone** permission with role **writer** on both the video and the cover. This grants more access than a public website embed requires; the owner should change public permissions to **reader/viewer** while preserving the intended audience's ability to view the video. The website does not modify Drive sharing permissions.
+
+**QA**: GitHub Actions checks the exact team names, portrait files and their WebP signatures, film identifier and click-to-load behavior. Playwright runs responsive UI tests in both WebKit and Chromium.
+
 ## October 2026 storefront polish and customer care
 
 - Resolved the investor teaser's unexpectedly stacked desktop layout with a defined two-column composition, tighter section spacing, a prominent babywear editorial photo and individually styled topic chips.
@@ -147,6 +169,7 @@ investors.css                   Investor design, layout and responsive behavior
 policies.html                   Customer care / proposed operating policies
 policies.css                    Customer care responsive design
 assets/blotti-*.webp            Optimized Blotti concept images from supplied ZIP
+assets/team/*.webp              Original team portraits and branded film cover
 .github/workflows/check.yml     JS, model and asset CI validation
 README.md                       Source notes, operations and claims guardrails
 ```
