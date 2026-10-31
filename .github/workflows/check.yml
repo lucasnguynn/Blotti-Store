@@ -74,6 +74,11 @@ jobs:
           assert(inv.includes('id="investorFilmPlay"') && inv.includes('assets/team/blotti-team-film-cover.webp'),'Film thumbnail/play interaction missing');
           assert(texts['investors.js'].includes('1brvMZ4LMBH9ObX5ex9AN4tygYYxp3LxK/preview'),'Wrong Google Drive film ID');
           assert(texts['investors.js'].includes('investorFilmPlay'),'Film play button is not wired');
+          assert(inv.includes('id="investorFilmExpand"'),'Mobile film enlargement control missing');
+          assert(inv.includes('investors.css?v=20261031-mobilefilm2') && inv.includes('investors.js?v=20261031-mobilefilm2'),'New film assets must bypass old iPhone browser cache');
+          assert(texts['investors.css'].includes('.inv-film-frame.is-playing.is-expanded') && texts['investors.css'].includes('aspect-ratio:4 / 3'),'Phone video must reserve more space for the Drive toolbar');
+          assert(texts['investors.js'].includes("holder.classList.add('is-playing')") && texts['investors.js'].includes("holder.classList.toggle('is-expanded')"),'Video sizing must activate after play and have a size toggle');
+
           const portraits=Array.from(inv.matchAll(/src="(assets\/team\/[a-z-]+\.webp)"/g),m=>m[1]);
           assert.equal(portraits.length,8,'Seven portraits and one poster should be present');
           for(const asset of portraits){
