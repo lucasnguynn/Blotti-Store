@@ -115,6 +115,44 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
             console.error(prefix+' Drive video did not load after pressing play');
             failed=true;
           }
+          const frame=page.locator('#investorFilmFrame');
+          const playerSize=await frame.evaluate(el=>{
+            const rect=el.getBoundingClientRect();
+            return {width:rect.width,height:rect.height,playing:el.classList.contains('is-playing')};
+          });
+          if(!playerSize.playing){
+            console.error(prefix+' Film player failed to enter playback mode');failed=true;
+          }
+          if(viewport.width<=390){
+            if(playerSize.height<playerSize.width*.70){
+              console.error(prefix+' iPhone Drive player too short: '+JSON.stringify(playerSize));failed=true;
+            }
+            const expand=page.locator('#investorFilmExpand');
+            if(!(await expand.isVisible())){
+              console.error(prefix+' Mobile enlarge-video control missing');failed=true;
+            }else{
+              await expand.click();
+              const expandedSize=await frame.evaluate(el=>{
+                const r=el.getBoundingClientRect();
+                return {width:r.width,height:r.height,expanded:el.classList.contains('is-expanded')};
+              });
+              if(!expandedSize.expanded || expandedSize.height<playerSize.height+35 ||
+                (await expand.getAttribute('aria-pressed'))!=='true'){
+                console.error(prefix+' Mobile video enlargement failed: '+JSON.stringify(expandedSize));failed=true;
+              }
+              const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3);
+              if(overflow){console.error(prefix+' Enlarge mode causes horizontal scroll');failed=true;}
+              await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-video-expanded.png'});
+              await expand.click();
+              if((await expand.getAttribute('aria-pressed'))!=='false'){
+                console.error(prefix+' Compact player did not reset');failed=true;
+              }
+            }
+          }else if(viewport.width>=650){
+            if(Math.abs(playerSize.height/playerSize.width-(9/16))>.035){
+              console.error(prefix+' Desktop/Tablet video ratio regressed: '+JSON.stringify(playerSize));failed=true;
+            }
+          }
           await page.locator('#vision').scrollIntoViewIfNeeded();
           await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-vision.png'});
         }
