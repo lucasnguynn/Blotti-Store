@@ -73,7 +73,7 @@ jobs:
           assert(inv.includes('id="investorFilmPlay"') && inv.includes('assets/team/blotti-team-film-cover.webp'),'Film thumbnail/play interaction missing');
           assert(texts['investors.js'].includes('1brvMZ4LMBH9ObX5ex9AN4tygYYxp3LxK/preview'),'Wrong Google Drive film ID');
           assert(texts['investors.js'].includes('investorFilmPlay'),'Film play button is not wired');
-          const portraits=Array.from(inv.matchAll(/src="(assets\\/team\\/[a-z-]+\\.webp)"/g),m=>m[1]);
+          const portraits=Array.from(inv.matchAll(/src="(assets\/team\/[a-z-]+\.webp)"/g),m=>m[1]);
           assert.equal(portraits.length,8,'Seven portraits and one poster should be present');
           for(const asset of portraits){
             assert(fs.existsSync(asset),'Missing local team asset: '+asset);
