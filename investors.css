@@ -225,3 +225,39 @@
 @media(prefers-reduced-motion:reduce){
 .inv-person-card,.inv-person-portrait img,.inv-film-poster img,.inv-film-play{transition:none}
 }
+
+/* Drive iframe toolbar needs more vertical space on iPhone. The embedded
+   provider UI is cross-origin; we cannot change its internal controls.
+   Preserve the original 16:9 desktop layout and enlarge only mobile playback. */
+.inv-film-player-actions{display:none;gap:15px;align-items:center;flex-wrap:wrap;margin:13px 1px 5px}
+.inv-film-player-actions.is-ready{display:flex}
+.inv-film-expand{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ae91ab;background:#fff9fdf2;border-radius:100px;color:#654664;min-height:40px;padding:9px 15px;font-size:11px;font-weight:800;touch-action:manipulation;transition:background .2s,color .2s}
+.inv-film-expand:hover,.inv-film-expand[aria-pressed="true"]{background:#6c4c6c;color:#fff}
+.inv-film-expand:focus-visible{outline:3px solid #947096;outline-offset:3px}
+.inv-film-expand svg{width:15px;height:15px;flex:0 0 15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.inv-film-open-external{display:inline-flex;align-items:center;gap:5px;color:#765571;font-size:11px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.inv-film-open-external .blotti-arrow-icon{width:12px;height:12px;min-width:12px}
+.inv-film-frame.is-playing{background:#171218}
+@media(min-width:651px){
+  .inv-film-player-actions{display:none!important}
+  .inv-film-frame.is-playing,.inv-film-frame.is-expanded{aspect-ratio:16 / 9;height:auto}
+}
+@media(max-width:650px){
+  /* 16:9 provides insufficient room for Drive's mobile toolbar.
+     A taller 4:3 iframe displays the complete video below the controls. */
+  .inv-film-frame.is-playing{aspect-ratio:4 / 3;height:auto;max-width:100%}
+  /* Optional taller mode for a fully usable in-page player and seeking. */
+  .inv-film-frame.is-playing.is-expanded{aspect-ratio:auto;height:min(72dvh,660px);min-height:340px}
+  .inv-film-frame iframe{inset:0;width:100%;height:100%;display:block}
+  .inv-film-player-actions.is-ready{justify-content:space-between}
+  .inv-film-inline-note{font-size:10px;line-height:1.55}
+}
+@media(max-width:385px){
+  .inv-film-frame.is-playing.is-expanded{height:min(76dvh,620px);min-height:315px}
+  .inv-film-player-actions{gap:9px}
+  .inv-film-expand{font-size:10px;padding:9px 12px}
+  .inv-film-open-external{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .inv-film-expand{transition:none}
+}
