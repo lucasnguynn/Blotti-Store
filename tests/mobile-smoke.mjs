@@ -4,7 +4,8 @@ const base = 'http://127.0.0.1:8765';
 const pages = [
   {path:'/index.html', name:'store'},
   {path:'/investors.html', name:'investors'},
-  {path:'/policies.html', name:'customer-care'}
+  {path:'/policies.html', name:'customer-care'},
+  {path:'/checkout.html', name:'checkout'}
 ];
 const sizes = [
   {width:320,height:700},
@@ -18,6 +19,14 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
   try {
     for (const viewport of sizes) {
       const context=await browser.newContext({viewport,deviceScaleFactor:2,isMobile:viewport.width<=390,hasTouch:viewport.width<=390});
+      await context.addInitScript(()=>{
+        if(location.pathname.endsWith('/checkout.html')){
+          localStorage.setItem('blotti-cart-v1',JSON.stringify([
+            {id:'little-cloud',size:'70',qty:2},
+            {id:'peach-petal',size:'60',qty:1}
+          ]));
+        }
+      });
       const page=await context.newPage();
       const errors=[];
       page.on('pageerror',error=>errors.push(error.message));
@@ -108,6 +117,59 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
           }
           await page.locator('#vision').scrollIntoViewIfNeeded();
           await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-vision.png'});
+        }
+        if(item.name==='checkout'){
+          const total=page.locator('#checkoutTotal');
+          if((await total.textContent()).replace(/[^0-9]/g,'')!=='1157000'){
+            console.error(prefix+' Wrong checkout subtotal for saved cart: '+await total.textContent());
+            failed=true;
+          }
+          await page.locator('[name="fullName"]').fill('Test Customer');
+          await page.locator('[name="phone"]').fill('0901234567');
+          await page.locator('[name="email"]').fill('test@example.com');
+          await page.locator('[name="province"]').fill('Ho Chi Minh City');
+          await page.locator('[name="district"]').fill('Ward 1');
+          await page.locator('[name="street"]').fill('123 Sample Street');
+          await page.locator('#continueToPayment').click();
+          if(await page.locator('#paymentPanel').isHidden()){
+            console.error(prefix+' Checkout did not advance to QR payment');
+            failed=true;
+          }
+          const ref=await page.locator('#checkoutPayReference').textContent();
+          if(!/^BLT[0-9]{6}[A-Z0-9]{6}$/.test(ref||'')){
+            console.error(prefix+' Invalid transaction reference: '+ref);
+            failed=true;
+          }
+          const image=page.locator('#checkoutQR');
+          await image.evaluate(img=>img.decode());
+          if(!(await image.evaluate(img=>img.naturalWidth>500))){
+            console.error(prefix+' User-provided VietQR asset not loaded');
+            failed=true;
+          }
+          await page.locator('[data-copy="amount"]').click();
+          try{
+            await page.waitForFunction(()=>/(Copied|unavailable)/i.test(
+              document.querySelector('#checkoutCopyStatus')?.textContent||''
+            ),null,{timeout:2500});
+          }catch{
+            console.error(prefix+' Copy amount produced no feedback');
+            failed=true;
+          }
+          await page.locator('[data-copy="reference"]').click();
+          try{
+            await page.waitForFunction(()=>/(Copied|unavailable)/i.test(
+              document.querySelector('#checkoutCopyStatus')?.textContent||''
+            ),null,{timeout:2500});
+          }catch{
+            console.error(prefix+' Copy reference did not respond');
+            failed=true;
+          }
+          await page.locator('#checkoutTransferReported').click();
+          if(await page.locator('#pendingPanel').isHidden() || !(await page.locator('#pendingReference').textContent()).includes(ref)){
+            console.error(prefix+' Pending-verification receipt was not shown');
+            failed=true;
+          }
+          await page.screenshot({path:'mobile-captures/'+engineName+'-'+viewport.width+'-checkout.png'});
         }
         if(item.name==='store'){
           if(!geometry.navLabel){console.error(prefix+' For Investors link missing');failed=true;}

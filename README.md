@@ -102,6 +102,20 @@ The investor hub includes:
 
 **Legal boundary:** The briefing is an academic business concept, not a securities offering, independently audited model or promise of a return. No claim of Blotti product certification, realized sales or completed fundraising is made.
 
+## Bank transfer checkout preview
+
+The storefront shopping bag now opens `checkout.html`, a responsive, realistic checkout **preview** with:
+- Editable delivery/contact details validated in the browser, an itemized order summary, and the subtotal computed from the exact existing cart items.
+- The original `IMG_1784.jpg` VietQR / Napas 24/7 supplied by the user, committed as `assets/blotti-vietqr-transfer.jpg` (image unchanged).
+- **Copy amount** (digits only for banking app input) and **Copy transfer reference** (a `BLTYYMMDDXXXXXX` unique-looking reference, stable within the browser tab for an unchanged cart).
+- A separate "I have made a transfer" action showing **Awaiting manual verification**, not a fake success screen.
+- A copyable checkout summary which the visitor may provide to a **verified** Blotti support contact outside this website. The page does not invent a contact email or accept uploads.
+- Mobile layouts optimized for narrow screens; automated WebKit and Chromium checks for cart amount, image load, transfer reference and pending-verification state.
+
+**QR technical detail:** the supplied QR decodes successfully to a static EMV/VietQR payload (point of initiation `11`). It does *not* encode a transaction amount or transfer note, so buyers must manually enter the copied amount and reference and independently **verify the recipient in their banking app** before transferring. The QR image itself must not be modified with a fictitious account or bank name.
+
+**Operational / user privacy limitations:** This remains a static, pre-launch website. The checkout cannot verify a bank transaction, create a server-side order, reserve inventory, send a receipt, calculate an actual shipping fee, or notify the brand. Customer delivery fields stay only in live page memory and are not submitted or saved. The transfer reference is kept in `sessionStorage` so refreshing an unchanged cart preserves the same reference in that session. The cart itself already uses `localStorage`. Shipping is marked *not included* and must be confirmed separately; displayed transfer amount covers items only. These limits are explicitly visible in the checkout UI. Blotti must establish its actual orders/fulfillment process and approved payment recipient before accepting customer money.
+
 ## Investor Relations: Meet the Team and Blotti Film
 
 The For Investors page at `investors.html#team` now includes an image-led **Meet Our Team** section with all seven named contributors and exactly the titles documented on **page 8** of `BUSINESS PROPOSAL - BMGT Group 2 (1) (1).pdf`:
@@ -168,6 +182,10 @@ investors.js                    Interactive financial chart, roadmap and actions
 investors.css                   Investor design, layout and responsive behavior
 policies.html                   Customer care / proposed operating policies
 policies.css                    Customer care responsive design
+checkout.html                   Multi-step bank-transfer checkout preview
+checkout.css                    Responsive checkout visual system
+checkout.js                     QR payment amount, transfer reference and copy actions
+assets/blotti-vietqr-transfer.jpg  Original supplied VietQR image
 assets/blotti-*.webp            Optimized Blotti concept images from supplied ZIP
 assets/team/*.webp              Original team portraits and branded film cover
 .github/workflows/check.yml     JS, model and asset CI validation

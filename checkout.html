@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9eff6">
+  <meta name="description" content="Blotti Babywear checkout preview with item summary, delivery details and VietQR bank transfer instructions.">
+  <title>Checkout | Blotti Babywear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,30,1;9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&display=swap" rel="stylesheet">
+  <link href="styles.css?v=20261031-checkout1" rel="stylesheet">
+  <link href="checkout.css?v=20261031-checkout1" rel="stylesheet">
+  <script src="checkout.js?v=20261031-checkout1" defer></script>
+</head>
+<body class="blotti-checkout">
+  <a href="#checkoutMain" class="skip-link">Skip to checkout</a>
+  <div class="checkout-announcement">THOUGHTFUL LITTLE THINGS · BLOTTI BABYWEAR</div>
+  <header class="checkout-header">
+    <div class="container checkout-header-inner">
+      <a href="index.html" class="wordmark" aria-label="Blotti home">Blotti<span>BABYWEAR</span></a>
+      <div class="checkout-progress" aria-label="Checkout progress">
+        <span class="is-done"><span class="progress-number">01</span> Bag</span>
+        <span class="progress-line"></span>
+        <span id="progressDelivery" class="is-current"><span class="progress-number">02</span> Details</span>
+        <span class="progress-line"></span>
+        <span id="progressPayment"><span class="progress-number">03</span> Transfer</span>
+      </div>
+      <a href="index.html#shop" class="checkout-back">Continue shopping <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </div>
+  </header>
+  <main id="checkoutMain" class="checkout-main">
+    <div class="container">
+      <div class="checkout-title-area">
+        <div><span class="checkout-eyebrow">A LITTLE MORE LOVE, ON ITS WAY</span><h1>One thoughtful<br><em>little step at a time.</em></h1><p>Review your pieces, add your details and follow the bank transfer instructions when you're ready.</p></div>
+        <div class="checkout-title-mark" aria-hidden="true"><span>made with</span><svg viewBox="0 0 24 24"><path d="M20.5 8.6c0 5.2-8.5 10.9-8.5 10.9S3.5 13.8 3.5 8.6A4.8 4.8 0 0 1 12 5.5a4.8 4.8 0 0 1 8.5 3.1Z"/></svg><span>care</span></div>
+      </div>
+      <div class="checkout-status-banner" role="note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6m0-10v1"/></svg>
+        <p><strong>Pre-launch checkout preview.</strong> This site does not transmit orders to Blotti or verify bank payments. The QR may direct a real bank transfer. Only send money after confirming the recipient and arranging the purchase directly with the Blotti team.</p>
+      </div>
+      <div id="checkoutEmpty" class="checkout-empty" hidden>
+        <h2>Nothing in your little bag yet.</h2><p>Add something lovely to your bag before checking out.</p>
+        <a href="index.html#shop" class="pill dark">Browse the collection <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div id="checkoutContent" class="checkout-layout">
+        <div class="checkout-flow">
+          <section class="checkout-panel" id="deliveryPanel" aria-labelledby="deliveryTitle">
+            <div class="checkout-panel-heading"><span class="checkout-panel-number">01</span><div><span class="checkout-eyebrow">LET'S GET THE DETAILS RIGHT</span><h2 id="deliveryTitle">Delivery details</h2></div></div>
+            <form id="checkoutDeliveryForm" novalidate>
+              <div class="checkout-field-grid">
+                <label class="checkout-field">Full name <span aria-hidden="true">*</span><input name="fullName" autocomplete="name" required maxlength="90" placeholder="Your full name"></label>
+                <label class="checkout-field">Phone number <span aria-hidden="true">*</span><input name="phone" autocomplete="tel" inputmode="tel" type="tel" required minlength="9" maxlength="16" pattern="[+0-9 ()-]{9,16}" placeholder="e.g. 090 123 4567"></label>
+                <label class="checkout-field checkout-field-wide">Email (optional)<input name="email" autocomplete="email" type="email" maxlength="120" placeholder="you@example.com"></label>
+                <label class="checkout-field">Province / city <span aria-hidden="true">*</span><input name="province" autocomplete="address-level1" required maxlength="80" placeholder="Ho Chi Minh City"></label>
+                <label class="checkout-field">Ward / district <span aria-hidden="true">*</span><input name="district" autocomplete="address-level2" required maxlength="80" placeholder="Your ward or district"></label>
+                <label class="checkout-field checkout-field-wide">Street address <span aria-hidden="true">*</span><input name="street" autocomplete="street-address" required maxlength="220" placeholder="House number, street, building or apartment"></label>
+                <label class="checkout-field checkout-field-wide">Delivery note (optional)<textarea name="note" maxlength="400" rows="3" placeholder="Anything helpful for the delivery?"></textarea></label>
+              </div>
+              <p class="checkout-privacy-note">Your details stay in this browser tab. No order details are submitted to a server, and no delivery is arranged by this checkout preview.</p>
+              <button class="checkout-primary" type="submit" id="continueToPayment">Continue to bank transfer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+            </form>
+          </section>
+
+          <section class="checkout-panel checkout-payment" id="paymentPanel" hidden aria-labelledby="paymentTitle">
+            <div class="checkout-panel-heading"><span class="checkout-panel-number">02</span><div><span class="checkout-eyebrow">BANK TRANSFER · VIETQR</span><h2 id="paymentTitle">Pay with your banking app</h2></div></div>
+            <p class="checkout-payment-lead">Scan the QR with your banking app, then enter the exact amount and transfer reference shown below.</p>
+            <div class="checkout-qr-stage">
+              <div class="checkout-qr-image-wrap"><img src="assets/blotti-vietqr-transfer.jpg" width="649" height="746" alt="VietQR NAPAS 24/7 transfer code provided by Blotti" id="checkoutQR"></div>
+              <div class="checkout-qr-instructions">
+                <span class="checkout-eyebrow">HOW TO TRANSFER</span>
+                <ol><li>Open your bank app and choose Scan QR.</li><li>Scan this code and confirm the recipient shown by your bank.</li><li>Enter the exact amount and transfer reference below.</li><li>Keep the transfer receipt for manual verification.</li></ol>
+                <p>This static QR does not include the amount or transfer note. Your bank must show the correct recipient before any payment.</p>
+              </div>
+            </div>
+            <div class="checkout-transfer-fields">
+              <div class="checkout-copy-field">
+                <div><span>TRANSFER AMOUNT · VND</span><strong id="checkoutPayAmount">0</strong></div>
+                <button class="checkout-copy" type="button" data-copy="amount" aria-label="Copy transfer amount"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg> Copy amount</button>
+              </div>
+              <div class="checkout-copy-field">
+                <div><span>TRANSFER REFERENCE / ORDER CODE</span><strong id="checkoutPayReference" class="checkout-ref">BLT...</strong></div>
+                <button class="checkout-copy" type="button" data-copy="reference" aria-label="Copy transfer reference"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg> Copy reference</button>
+              </div>
+              <p class="checkout-copy-feedback" role="status" aria-live="polite" id="checkoutCopyStatus"></p>
+            </div>
+            <div class="checkout-payment-actions">
+              <button type="button" id="checkoutTransferReported" class="checkout-primary">I have made a transfer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+              <button type="button" id="checkoutEditDetails" class="checkout-secondary">Edit delivery details</button>
+            </div>
+            <p class="checkout-payment-caution">Important: Pressing “I have made a transfer” does not verify funds or notify Blotti. Please keep your receipt and contact the team through a verified channel to arrange fulfillment.</p>
+          </section>
+          <section class="checkout-panel checkout-pending" id="pendingPanel" hidden aria-labelledby="pendingTitle">
+            <div class="checkout-pending-ornament"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+            <span class="checkout-eyebrow">REFERENCE SAVED IN THIS SESSION</span>
+            <h2 id="pendingTitle">Awaiting manual verification</h2>
+            <p>Your payment report was noted <strong>in this browser only</strong>. The bank transfer has not been verified and no order was submitted to Blotti. Keep your bank receipt and the reference below.</p>
+            <div class="checkout-pending-meta"><span>Reference</span><strong id="pendingReference"></strong><span>Transfer amount</span><strong id="pendingAmount"></strong></div>
+            <button type="button" id="copyOrderSummary" class="checkout-primary">Copy order summary <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+            <p id="pendingCopyStatus" class="checkout-copy-feedback" role="status" aria-live="polite"></p>
+            <a href="index.html#shop" class="checkout-secondary checkout-return">Back to collection</a>
+          </section>
+        </div>
+        <aside class="checkout-summary" aria-labelledby="summaryTitle">
+          <div class="checkout-summary-header"><span class="checkout-eyebrow">YOUR HAPPY LITTLE BAG</span><h2 id="summaryTitle">Your order <span id="checkoutItemCount"></span></h2></div>
+          <div id="checkoutItems" class="checkout-summary-items"></div>
+          <div class="checkout-summary-total">
+            <div><span>Items subtotal</span><strong id="checkoutSubtotal">0 ₫</strong></div>
+            <div><span>Delivery</span><span>Not included</span></div>
+            <div class="checkout-total"><span>Transfer amount</span><strong id="checkoutTotal">0 ₫</strong></div>
+            <p>Transfer amount covers items only. Delivery costs and fulfillment terms require separate confirmation with Blotti.</p>
+          </div>
+          <a href="index.html#shop" class="checkout-edit-bag">Edit your bag <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <div class="checkout-summary-footer"><span class="checkout-secure-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3 8-8 10-5-2-8-5-8-10V6l8-4Z"/></svg> Local checkout preview</span><a href="policies.html#shipping">Shipping information</a><a href="policies.html#returns">Returns &amp; exchanges</a></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="checkout-footer"><div class="container"><a href="index.html" class="checkout-footer-brand">Blotti <span>BABYWEAR</span></a><p>Little clothes, big love. Payment instructions are presented for a concept-stage collection.</p><a href="policies.html">Customer care</a></div></footer>
+</body>
+</html>

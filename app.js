@@ -112,7 +112,7 @@ function initEvents(){
  el('#cartToggle').addEventListener('click',()=>openDrawer('cart'));
  el('#wishToggle').addEventListener('click',()=>{renderWishlist();openDrawer('wish');});
  el('#overlay').addEventListener('click',closePanels);els('[data-close]').forEach(b=>b.addEventListener('click',closePanels));el('#modalClose').addEventListener('click',closePanels);
- el('#checkoutDemo').addEventListener('click',()=>toast('Online ordering is not yet open. Enjoy exploring the Blotti collection.'));
+ el('#checkoutDemo').addEventListener('click',()=>{if(!state.cart.length){toast('Add something lovely to your bag first.');return;}window.location.assign('checkout.html');});
  document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&activePanel){closePanels();return;}
   if(e.key==='Escape'&&!el('#searchPanel').hidden)el('#searchPanel').hidden=true;
