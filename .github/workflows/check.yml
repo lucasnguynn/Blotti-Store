@@ -101,7 +101,7 @@ jobs:
           assert(checkoutJs.includes('String(subtotal)')&&checkoutJs.includes('Copy unavailable'),'Transfer amount must copy digits with fallback');
           assert(checkoutJs.includes('does not') || checkout.includes('does not transmit'),'Checkout must disclose lack of live payment confirmation');
           assert(checkoutJs.includes('blotti-cart-v1'),'Checkout must read storefront cart');
-          assert(checkout.includes('does not transmit orders') && checkout.includes('not verify bank payments'),'Real-money transfer must be disclosed as not auto-verified');
+          assert(checkout.includes('does not transmit orders') && checkout.includes('or verify bank payments'),'Real-money transfer must be disclosed as not auto-verified');
           assert(checkout.includes('does not include the amount') || checkout.includes('does not include the amount or transfer note'),'Static QR must not be represented as prefilled transfer');
           assert(checkout.includes('manual verification'),'Pending state must avoid false verified-payment claims');
           const productMap=[...texts['app.js'].matchAll(/\bid:'([a-z-]+)'[^\n]*?price:(\d+)/g)];
