@@ -147,8 +147,11 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
             failed=true;
           }
           await page.locator('[data-copy="amount"]').click();
-          const copied=await page.locator('#checkoutCopyStatus').textContent();
-          if(!copied || !(/Copied|unavailable/i).test(copied)){
+          try{
+            await page.waitForFunction(()=>/(Copied|unavailable)/i.test(
+              document.querySelector('#checkoutCopyStatus')?.textContent||''
+            ),{timeout:2500});
+          }catch{
             console.error(prefix+' Copy amount produced no feedback');
             failed=true;
           }
