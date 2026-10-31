@@ -22,13 +22,14 @@ jobs:
         run: |
           node --check app.js
           node --check investors.js
+          node --check checkout.js
       - name: Content, asset and business-model smoke checks
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const assert = require('node:assert/strict');
-          const files = ['index.html','investors.html','policies.html','styles.css','investors.css','policies.css','app.js','investors.js'];
+          const files = ['index.html','investors.html','policies.html','checkout.html','styles.css','investors.css','policies.css','checkout.css','app.js','investors.js','checkout.js'];
           const texts = Object.fromEntries(files.map(p=>[p,fs.readFileSync(p,'utf8')]));
           const home=texts['index.html'], inv=texts['investors.html'], care=texts['policies.html'];
           for (const id of ['productGrid','fitForm','cartDrawer','wishlistDrawer','modal','journal','siteSearch','proof','story','collections','shop','investorTeaser']) {
@@ -87,6 +88,27 @@ jobs:
           }
           assert(home.includes('class="hero-star hstar1" aria-hidden="true"></span>'),'Store hero must use CSS decorative shape');
           assert(inv.includes('href="index.html"'),'Return link to storefront missing');
+          const checkout=texts['checkout.html'];
+          for(const id of ['checkoutDeliveryForm','checkoutItems','checkoutSubtotal','checkoutTotal','checkoutPayAmount','checkoutPayReference','checkoutTransferReported','copyOrderSummary']){
+            assert(checkout.includes('id="'+id+'"'),'Checkout missing '+id);
+          }
+          assert(home.includes('Proceed to checkout')&&texts['app.js'].includes("window.location.assign('checkout.html')"),'Shopping bag checkout route missing');
+          assert(checkout.includes('assets/blotti-vietqr-transfer.jpg'),'Uploaded VietQR image missing from checkout');
+          const qr=fs.readFileSync('assets/blotti-vietqr-transfer.jpg');
+          assert(qr.length>50000 && qr[0]===0xff && qr[1]===0xd8 && qr[2]===0xff,'VietQR JPEG missing/invalid');
+          const checkoutJs=texts['checkout.js'];
+          assert(checkoutJs.includes('getReference()')&&checkoutJs.includes("data-copy")&&checkoutJs.includes('navigator.clipboard'),'Copyable transfer amount/reference must be implemented');
+          assert(checkoutJs.includes('String(subtotal)')&&checkoutJs.includes('Copy unavailable'),'Transfer amount must copy digits with fallback');
+          assert(checkoutJs.includes('does not') || checkout.includes('does not transmit'),'Checkout must disclose lack of live payment confirmation');
+          assert(checkoutJs.includes('blotti-cart-v1'),'Checkout must read storefront cart');
+          assert(checkout.includes('does not transmit orders') && checkout.includes('not verify bank payments'),'Real-money transfer must be disclosed as not auto-verified');
+          assert(checkout.includes('does not include the amount') || checkout.includes('does not include the amount or transfer note'),'Static QR must not be represented as prefilled transfer');
+          assert(checkout.includes('manual verification'),'Pending state must avoid false verified-payment claims');
+          const productMap=[...texts['app.js'].matchAll(/\bid:'([a-z-]+)'[^\n]*?price:(\d+)/g)];
+          const checkoutMap=[...checkoutJs.matchAll(/'([a-z-]+)':\{name:'[^']+',price:(\d+)/g)];
+          assert(checkoutMap.length>=9,'Checkout needs nine priced items');
+          const appPrice=new Map(productMap.map(x=>[x[1],Number(x[2])]));
+          for(const m of checkoutMap)assert.equal(Number(m[2]),appPrice.get(m[1]),'Checkout price drift from store: '+m[1]);
           assert(texts['app.js'].includes('renderProducts()'),'Catalog render missing');
           assert(texts['app.js'].includes('localStorage'),'Cart and favorites persistence missing');
           assert(texts['investors.js'].includes('selectFinance('),'Interactive financial chart missing');
