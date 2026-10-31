@@ -125,21 +125,26 @@ function prepareTransfer(){
 }
 async function copyText(value,status){
  let ok=false;
- try{
-  if(navigator.clipboard&&window.isSecureContext){
-   await navigator.clipboard.writeText(value);ok=true;
-  }else{
-   const area=document.createElement('textarea');
+ if(status)status.textContent='Copying…';
+ if(navigator.clipboard&&window.isSecureContext){
+  try{await navigator.clipboard.writeText(value);ok=true;}catch{ok=false;}
+ }
+ // iOS in-app browsers and HTTP sites may deny Clipboard API access.
+ // Fall back to the user-gesture-triggered legacy selection method.
+ if(!ok){
+  let area;
+  try{
+   area=document.createElement('textarea');
    area.value=value;
    area.setAttribute('readonly','');
-   area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';
+   area.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;z-index:-1';
    document.body.append(area);
-   area.focus();area.select();area.setSelectionRange(0,area.value.length);
-   ok=document.execCommand('copy');
-   area.remove();
-  }
- }catch{ok=false}
- if(status)status.textContent=ok?'Copied to clipboard.': 'Copy unavailable in this browser. Select the displayed text and copy it manually.';
+   area.focus();area.select();area.setSelectionRange(0,value.length);
+   ok=!!document.execCommand('copy');
+  }catch{ok=false}
+  finally{if(area)area.remove();}
+ }
+ if(status)status.textContent=ok?'Copied to clipboard.':'Copy unavailable in this browser. Select the displayed text and copy it manually.';
  return ok;
 }
 function handleCopy(button){
