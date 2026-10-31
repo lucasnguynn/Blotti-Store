@@ -150,9 +150,18 @@ for (const [engineName, engine] of [['webkit',webkit],['chromium',chromium]]) {
           try{
             await page.waitForFunction(()=>/(Copied|unavailable)/i.test(
               document.querySelector('#checkoutCopyStatus')?.textContent||''
-            ),{timeout:2500});
+            ),null,{timeout:2500});
           }catch{
             console.error(prefix+' Copy amount produced no feedback');
+            failed=true;
+          }
+          await page.locator('[data-copy="reference"]').click();
+          try{
+            await page.waitForFunction(()=>/(Copied|unavailable)/i.test(
+              document.querySelector('#checkoutCopyStatus')?.textContent||''
+            ),null,{timeout:2500});
+          }catch{
+            console.error(prefix+' Copy reference did not respond');
             failed=true;
           }
           await page.locator('#checkoutTransferReported').click();
